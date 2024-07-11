@@ -12,7 +12,7 @@ public class Paddle : MonoBehaviour
     [SerializeField] private float _minForce = 1.5f;
     private float _xForceMultiply = 1.0f;
     private float _yForceAngle = -1.0f;
-    private AimSide aimSide = AimSide.Down;
+    private AimSide _aimSide = AimSide.Down;
 
     private Collider2D _collider2D;
 
@@ -27,7 +27,7 @@ public class Paddle : MonoBehaviour
     }
 
     private void ChangeSide(){
-        aimSide = aimSide == AimSide.Top ? AimSide.Down : AimSide.Top;
+        _aimSide = _aimSide == AimSide.Top ? AimSide.Down : AimSide.Top;
         _yForceAngle *= -1;
         Debug.Log("ChangeSide");
     }
@@ -41,7 +41,7 @@ public class Paddle : MonoBehaviour
             float yMaxGlobalPosition = gameObject.transform.parent.position.y + paddleBound.extents.y;
             float yMinGlobalPosition = gameObject.transform.parent.position.y - paddleBound.extents.y;
 
-            float gapDistance = aimSide == AimSide.Top ? ballPosY - yMinGlobalPosition : yMaxGlobalPosition - ballPosY;
+            float gapDistance = _aimSide == AimSide.Top ? ballPosY - yMinGlobalPosition : yMaxGlobalPosition - ballPosY;
             float precisionPercent = gapDistance / (yMaxGlobalPosition - yMinGlobalPosition);
             if (precisionPercent > 1) //Distante do ponto max
                 precisionPercent = 1;
