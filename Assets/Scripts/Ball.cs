@@ -20,6 +20,7 @@ public class Ball : MonoBehaviour
     }
 
     public void AddForce(Vector2 force){
+        _speed += 10.0f;
         ResetVelocity();
         _rigidbody.AddForce(force * _speed);
     }
