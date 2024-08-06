@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CharacterPlayer : Character
 {
-    private Vector2 _direction;
-
     private void Update() {
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             _direction = Vector2.up;
@@ -12,11 +10,14 @@ public class CharacterPlayer : Character
         }else {
             _direction = Vector2.zero;
         }
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            _paddle.ChangeAimSide();
+        }
     }
 
     private void FixedUpdate() {
-        if(_direction.sqrMagnitude != 0){
+        if(_direction.sqrMagnitude != 0)
             _rigidbody.AddForce(_direction * _speed);
-        }
     }
 }
