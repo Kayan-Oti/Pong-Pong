@@ -15,16 +15,16 @@ public class Paddle : MonoBehaviour
 
     private Collider2D _collider2D;
 
-    public void Setup(PlayerSide side, float max, float min){
+    public void Setup(ArenaSide side, float max, float min){
         _collider2D = GetComponent<Collider2D>();
         _maxForce = max;
         _minForce = min;
-        SetupPlayerSide(side);
+        SetupArenaSide(side);
     }
 
-    private void SetupPlayerSide(PlayerSide side){
+    private void SetupArenaSide(ArenaSide side){
         //Dont Change if Side is Left
-        if(side.Equals(PlayerSide.Left))
+        if(side.Equals(ArenaSide.Left))
             return;
         
         //Chande if Side is Right

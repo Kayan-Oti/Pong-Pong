@@ -18,6 +18,6 @@ public class CharacterPlayer : Character
 
     private void FixedUpdate() {
         if(_direction.sqrMagnitude != 0)
-            _rigidbody.AddForce(_direction * _speed);
+            _rigidbody.AddForce(_direction * _characterData.speed);
     }
 }
