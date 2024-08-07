@@ -10,13 +10,17 @@ public class Ball : MonoBehaviour
     private void Start(){
         _rigidbody = GetComponent<Rigidbody2D>();
         ResetBall();
-        Invoke(nameof(AddStartingForce),1);
     }
 
-    private void ResetBall(){
+    public void ResetBall(){
         _accelerationCurrent = _accelerationStart;
         ResetVelocity();
         transform.localPosition = Vector2.zero;
+        Invoke(nameof(AddStartingForce),1.5f);
+    }
+
+    private void ResetVelocity(){
+        _rigidbody.velocity = Vector2.zero;
     }
 
     private void AddStartingForce(){
@@ -25,14 +29,10 @@ public class Ball : MonoBehaviour
 
         _rigidbody.AddForce(new Vector2(x,y) * _accelerationCurrent);
     }
-    private void ResetVelocity(){
-        _rigidbody.velocity = Vector2.zero;
-    }
 
     public void AddForce(Vector2 force){
         _accelerationCurrent += _accelerationScale;
         ResetVelocity();
         _rigidbody.AddForce(force * _accelerationCurrent);
     }
-
 }

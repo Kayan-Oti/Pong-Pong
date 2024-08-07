@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class CharacterCPU : Character
+public class CharacterBOT_LevelTeste : CharacterBOT
 {
-    [Header("BOT Settings")]
-    [SerializeField] private Rigidbody2D _ballRigidbody;
-
-    private void Update(){
+    public override void IAControl()
+    {
         if(_ballRigidbody.velocity.x > 0.0f){
             if(_ballRigidbody.position.y >  transform.position.y)
                 _direction = Vector2.up;
@@ -22,10 +20,5 @@ public class CharacterCPU : Character
             else
                 _direction = Vector2.zero;
         }
-    }
-
-    private void FixedUpdate() {
-        if(_direction.sqrMagnitude != 0)
-            _rigidbody.AddForce(_direction * _speed);
     }
 }

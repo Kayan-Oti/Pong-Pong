@@ -2,12 +2,28 @@ using UnityEngine;
 
 public class MatchManager : MonoBehaviour
 {
-    private int _scorePlayerLeft, _scorePlayerRight;
+    [SerializeField] private Ball _ball;
+    [SerializeField] private ScoreManager _scoreManager;
+    private int _scorePlayerLeft = 0, _scorePlayerRight = 0;
 
-    public void AddPoint(PlayerSide side){
-        if(side.Equals(PlayerSide.Left))
+    private void OnEnable() {
+        EventManager.MatchManger.OnScoreTrigger.Get().AddListener(OnScoreTrigger);
+    }
+
+    private void OnDisable() {
+        EventManager.MatchManger.OnScoreTrigger.Get().RemoveListener(OnScoreTrigger);
+    }
+
+    public void OnScoreTrigger(Component component, ArenaSide side){
+        if(side.Equals(ArenaSide.Left)){
             _scorePlayerLeft++;
-        else
+            _scoreManager.ChangeScore(side, _scorePlayerLeft);
+        }
+        else{
             _scorePlayerRight++;
+            _scoreManager.ChangeScore(side, _scorePlayerRight);
+        }
+
+        _ball.ResetBall();
     }
 }
