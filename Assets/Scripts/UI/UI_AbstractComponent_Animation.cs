@@ -10,9 +10,14 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
     }
 
     public abstract void Setup();
+    public abstract void SetComponents();
+
 
     [ContextMenu("Start animation")]
     public abstract IEnumerator StartAnimation();
+
+    [ContextMenu("End animation")]
+    public abstract IEnumerator EndAnimation();
 
 }
 

@@ -14,10 +14,7 @@ public class UI_Animation_Box_Menu : UI_AbstractComponent_Animation
 
     //Values
     private Vector2 _defaultPos;
-    private float _upOffset;
-    private float _downOffset;
-    private float _leftOffset;
-    private float _rightOffset;
+    private float _endPos;
 
     #region Setup
 
@@ -29,18 +26,15 @@ public class UI_Animation_Box_Menu : UI_AbstractComponent_Animation
 
         //Set Values
         _defaultPos = _rectTransform.anchoredPosition;
-        InitializeOffsetPostion();
+        _endPos = _defaultPos.x - _distanceToAnimate.x;
 
+        SetComponents();
+    }
+
+    public override void SetComponents(){
         //Set Components
         _rectTransform.transform.localPosition += new Vector3(0f,_distanceToAnimate.y, 0f);
         _canvasGroup.alpha = 0f;
-    }
-
-    private void InitializeOffsetPostion(){
-        _upOffset = _defaultPos.y + _distanceToAnimate.y;
-        _downOffset = _defaultPos.y - _distanceToAnimate.y;
-        _rightOffset = _defaultPos.x + _distanceToAnimate.x;
-        _leftOffset = _defaultPos.x - _distanceToAnimate.x;
     }
 
     #endregion
@@ -56,9 +50,9 @@ public class UI_Animation_Box_Menu : UI_AbstractComponent_Animation
         yield return startAnimationSequence.WaitForCompletion();
     }
 
-    [ContextMenu("OnClick_Play")]
-    public IEnumerator OnClick_Play(){
-        Tween animation = _rectTransform.DOAnchorPosX(_leftOffset, _animationDuration).SetEase(Ease.InBack);
+    public override IEnumerator EndAnimation()
+    {
+        Tween animation = _rectTransform.DOAnchorPosX(_endPos, _animationDuration).SetEase(Ease.InBack);
 
         yield return animation.WaitForCompletion();
     }

@@ -14,7 +14,10 @@ public class UI_Animation_Button : UI_AbstractComponent_Animation
     {
         //Get Components
         _rectTransform = GetComponent<RectTransform>();
+        SetComponents();
+    }
 
+    public override void SetComponents(){
         _rectTransform.localScale = Vector2.zero;
     }
 
@@ -22,5 +25,10 @@ public class UI_Animation_Button : UI_AbstractComponent_Animation
     public override IEnumerator StartAnimation(){
         _rectTransform.DOScale(1f, _animationDuration).SetEase(_customEase);
         yield return null;
+    }
+
+    public override IEnumerator EndAnimation()
+    {
+        throw new System.NotImplementedException();
     }
 }

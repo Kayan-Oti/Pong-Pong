@@ -53,7 +53,7 @@ public class Paddle : MonoBehaviour
             float precisionPercent = gapDistance / (yMaxGlobalPosition - yMinGlobalPosition);
             if (precisionPercent > 1) //Distante do ponto max
                 precisionPercent = 1;
-            else if (precisionPercent < 0.1) //Próximo o suficiente do ponto max
+            else if (precisionPercent < 0.2) //Próximo o suficiente do ponto max
                 precisionPercent = 0;
 
             //Applaying
