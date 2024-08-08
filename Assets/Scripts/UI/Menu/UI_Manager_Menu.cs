@@ -2,11 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Manager_Menu : MonoBehaviour
+public class UI_Manager_Menu : MonoBehaviour
 {
     [Header("Animations Objects")]
     [SerializeField] private UI_Animation_Box_Menu _animationBox;
-    [SerializeField] private UI_Manager_Animation_Buttons _managerAnimationButtons;
+    [SerializeField] private UI_Manager_Buttons _managerAnimationButtons;
 
     [Header("Values")]
     [SerializeField] private float _delayToStart = 1.0f;
@@ -27,7 +27,7 @@ public class Manager_Menu : MonoBehaviour
     }
 
     public IEnumerator AnimationPlay(){
-        yield return StartCoroutine(_animationBox.OnClick_Play());
+        yield return StartCoroutine(_animationBox.EndAnimation());
         SceneManager.LoadScene("Level1");
     }
 }

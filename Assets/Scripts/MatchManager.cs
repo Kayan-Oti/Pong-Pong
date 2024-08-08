@@ -1,29 +1,66 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MatchManager : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
     [SerializeField] private ScoreManager _scoreManager;
-    private int _scorePlayerLeft = 0, _scorePlayerRight = 0;
+    [SerializeField] private UI_Manager_CountDown _countDownManager;
+    [SerializeField] private UI_Manager_GameOver _gameOverManager;
+    [SerializeField] private float _scoreToWin = 7;
+    private Dictionary<ArenaSide, int> _scoreSides = new Dictionary<ArenaSide, int>();
 
     private void OnEnable() {
-        EventManager.MatchManger.OnScoreTrigger.Get().AddListener(OnScoreTrigger);
+        EventManager.MatchManger.OnScore.Get().AddListener(OnScoreTrigger);
     }
 
     private void OnDisable() {
-        EventManager.MatchManger.OnScoreTrigger.Get().RemoveListener(OnScoreTrigger);
+        EventManager.MatchManger.OnScore.Get().RemoveListener(OnScoreTrigger);
     }
 
-    public void OnScoreTrigger(Component component, ArenaSide side){
-        if(side.Equals(ArenaSide.Left)){
-            _scorePlayerLeft++;
-            _scoreManager.ChangeScore(side, _scorePlayerLeft);
+    private void Start() {
+        //Solução temporária
+        //Invoke criado porque alguns objetos não conseguem iniciar a tempo
+        //Criar um evento que triga o começo da partida
+        Invoke(nameof(StartMatch), 0.25f);
+    }
+
+    private void StartMatchSetup(){
+        foreach(ArenaSide side in Enum.GetValues(typeof(ArenaSide))) {
+            if(!_scoreSides.TryAdd(side, 0))
+                _scoreSides[side] = 0;
         }
-        else{
-            _scorePlayerRight++;
-            _scoreManager.ChangeScore(side, _scorePlayerRight);
-        }
+    }
+
+    private void StartMatch(){
+        StartMatchSetup();
+        StartCoroutine(NextRound());
+    }
+
+    public void OnScoreTrigger(ArenaSide side){
+        _scoreSides[side]++;
+        _scoreManager.ChangeScore(side, _scoreSides[side]);
 
         _ball.ResetBall();
+
+        if(_scoreSides[side] >= _scoreToWin)
+            EndOfMatch(side);
+        else
+            StartCoroutine(NextRound());
+    }
+
+    private IEnumerator NextRound(){
+        yield return new WaitForSeconds(0.25f);
+        yield return StartCoroutine(_countDownManager.StartAnimation());
+        yield return new WaitForSeconds(0.25f);
+        _ball.AddStartingForce();
+    }
+
+    private void EndOfMatch(ArenaSide side){
+        EventManager.MatchManger.OnEndMatch.Get().Invoke();
+
+        StartCoroutine(_gameOverManager.StartAnimation());
     }
 }

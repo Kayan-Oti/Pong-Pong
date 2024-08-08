@@ -18,7 +18,11 @@ public static class EventManager
     }
 
     public class MatchEvents{
-        public class ScoreEvent: UnityEvent<Component, ArenaSide> {}
-        public GenericEvent<ScoreEvent> OnScoreTrigger = new GenericEvent<ScoreEvent>();
+        public class ScoreEvent: UnityEvent<ArenaSide> {}
+        public GenericEvent<ScoreEvent> OnScore = new GenericEvent<ScoreEvent>();
+
+        public class EndMatchEvent: UnityEvent {}
+        public GenericEvent<EndMatchEvent> OnEndMatch = new GenericEvent<EndMatchEvent>();
+
     }
 }
