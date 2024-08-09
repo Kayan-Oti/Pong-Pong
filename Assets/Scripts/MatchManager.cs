@@ -31,6 +31,7 @@ public class MatchManager : MonoBehaviour
         foreach(ArenaSide side in Enum.GetValues(typeof(ArenaSide))) {
             if(!_scoreSides.TryAdd(side, 0))
                 _scoreSides[side] = 0;
+            _scoreManager.ChangeScore(side, _scoreSides[side]);
         }
     }
 
@@ -39,9 +40,14 @@ public class MatchManager : MonoBehaviour
         StartCoroutine(NextRound());
     }
 
+    public void Rematch(){
+        StartCoroutine(_gameOverManager.EndAnimation());
+
+        Invoke(nameof(StartMatch), 1.0f);
+    }
+
     public void OnScoreTrigger(ArenaSide side){
-        _scoreSides[side]++;
-        _scoreManager.ChangeScore(side, _scoreSides[side]);
+        AddScore(side);
 
         _ball.ResetBall();
 
@@ -49,6 +55,11 @@ public class MatchManager : MonoBehaviour
             EndOfMatch(side);
         else
             StartCoroutine(NextRound());
+    }
+
+    private void AddScore(ArenaSide side){
+        _scoreSides[side]++;
+        _scoreManager.ChangeScore(side, _scoreSides[side]);
     }
 
     private IEnumerator NextRound(){
