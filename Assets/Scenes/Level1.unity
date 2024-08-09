@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationDuration: 0.25
+  _animationDuration: 0.5
   _distanceToAnimate: {x: 0, y: 0}
   _customEaseStart:
     serializedVersion: 2
@@ -1952,7 +1952,7 @@ MonoBehaviour:
   _scoreManager: {fileID: 1513537414}
   _countDownManager: {fileID: 855913437}
   _gameOverManager: {fileID: 1338512779}
-  _scoreToWin: 7
+  _scoreToWin: 1
 --- !u!4 &809949366
 Transform:
   m_ObjectHideFlags: 0
@@ -4740,7 +4740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1943388561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 809949365}
+        m_TargetAssemblyTypeName: MatchManager, Assembly-CSharp
+        m_MethodName: Rematch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1943388561
 MonoBehaviour:
   m_ObjectHideFlags: 0
