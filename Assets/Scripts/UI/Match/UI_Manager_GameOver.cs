@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 public class UI_Manager_GameOver : UI_AbstractComponent_Manager
 {
@@ -17,6 +18,7 @@ public class UI_Manager_GameOver : UI_AbstractComponent_Manager
         {
             StartCoroutine(animation.EndAnimation());
         }
+
         yield return null;
     }
 }

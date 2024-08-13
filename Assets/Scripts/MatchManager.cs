@@ -42,6 +42,7 @@ public class MatchManager : MonoBehaviour
 
     public void Rematch(){
         StartCoroutine(_gameOverManager.EndAnimation());
+        Debug.Log("Rematch");
 
         Invoke(nameof(StartMatch), 1.0f);
     }
@@ -73,5 +74,9 @@ public class MatchManager : MonoBehaviour
         EventManager.MatchManger.OnEndMatch.Get().Invoke();
 
         StartCoroutine(_gameOverManager.StartAnimation());
+    }
+
+    public void BackToMenu(){
+        GameManager.Instance.LoadScene(SceneIndex.Menu);
     }
 }
