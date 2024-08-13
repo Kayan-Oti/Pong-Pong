@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UI_Manager_Menu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [Header("Animations Objects")]
     [SerializeField] private UI_Animation_Box_Menu _animationBox;
@@ -28,6 +28,6 @@ public class UI_Manager_Menu : MonoBehaviour
 
     public IEnumerator AnimationPlay(){
         yield return StartCoroutine(_animationBox.EndAnimation());
-        SceneManager.LoadScene("Level1");
+        GameManager.Instance.LoadScene(SceneIndex.Level1);
     }
 }

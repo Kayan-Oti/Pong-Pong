@@ -37,19 +37,19 @@ public class UI_Animation_FadeInOut : UI_AbstractComponent_Animation
 
     public override IEnumerator StartAnimation()
     {
-        Sequence startAnimationSequence = DOTween.Sequence();
-        startAnimationSequence
+        Sequence animationSequence = DOTween.Sequence();
+        animationSequence
             .Insert(1,_rectTransform.DOAnchorPos(_defaultPos, _animationDuration).SetEase(_customEaseStart))
             .Insert(1,_canvasGroup.DOFade(1f, _animationDuration));
-        yield return startAnimationSequence.WaitForCompletion();
+        yield return animationSequence.WaitForCompletion();
     }
 
     public override IEnumerator EndAnimation(){
-        Sequence startAnimationSequence = DOTween.Sequence();
-        startAnimationSequence
+        Sequence animationSequence = DOTween.Sequence();
+        animationSequence
             .Insert(1,_rectTransform.DOAnchorPos(_endPos, _animationDuration).SetEase(_customEaseEnd))
             .Insert(1,_canvasGroup.DOFade(0f, _animationDuration));
-        yield return startAnimationSequence.WaitForCompletion();
+        yield return animationSequence.WaitForCompletion();
     }
 }
 
