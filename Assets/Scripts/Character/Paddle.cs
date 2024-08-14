@@ -22,6 +22,10 @@ public class Paddle : MonoBehaviour
         SetupArenaSide(side);
     }
 
+    public void Reset(){
+        _aimSide = AimSide.Down;
+    }
+
     private void SetupArenaSide(ArenaSide side){
         //Dont Change if Side is Left
         if(side.Equals(ArenaSide.Left))
