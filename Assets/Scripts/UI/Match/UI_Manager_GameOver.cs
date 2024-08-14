@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEngine;
 
 public class UI_Manager_GameOver : UI_AbstractComponent_Manager
 {
@@ -8,8 +7,9 @@ public class UI_Manager_GameOver : UI_AbstractComponent_Manager
         foreach(UI_AbstractComponent_Animation animation in _listAnimations)
         {
             animation.SetComponents();
-            yield return StartCoroutine(animation.StartAnimation());
+            StartCoroutine(animation.StartAnimation());
         }
+        yield return  null;
     }
 
     public IEnumerator EndAnimation()

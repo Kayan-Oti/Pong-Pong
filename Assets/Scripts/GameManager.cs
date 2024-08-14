@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
         _scenesLoading.Add(SceneManager.LoadSceneAsync(_currentSceneIndex, LoadSceneMode.Additive));
 
         //Espera a animação terminar
-        //tween.DOSequence sei lá
-        yield return new WaitForSeconds(1f); //Tempo mínimo
+        yield return new WaitForSeconds(1f); //Substituir
 
+        //Espera carregar tudo
         for(int i = 0; i<_scenesLoading.Count; i++){
             while(!_scenesLoading[i].isDone){
                 yield return null;
@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnSceneLoaded(){
+        //Animação ao terminar de Carrega
+        Debug.Log("Animação terminar de Carregar");
+
+        //Invoca o evento
         EventManager.GameManager.OnLoadedScene.Get().Invoke();
     }
 }

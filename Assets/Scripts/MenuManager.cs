@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
     [Header("Animations Objects")]
     [SerializeField] private UI_Animation_Box_Menu _animationBox;
+    [SerializeField] private UI_Animation_LevelSelector _animationLevelSelector;
     [SerializeField] private UI_Manager_Buttons _managerAnimationButtons;
+
+    [SerializeField] private ButtonsManager _buttonManager_Main, _buttonManager_LevelSelector;
 
     [Header("Values")]
     [SerializeField] private float _delayToStart = 1.0f;
@@ -20,14 +22,38 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(_delayToStart);
         yield return StartCoroutine(_animationBox.StartAnimation());
         yield return StartCoroutine(_managerAnimationButtons.StartAnimation());
+        _buttonManager_Main.SetInteractable(true);
     }
 
     public void OnClick_Play(){
+        _buttonManager_Main.SetInteractable(false);
         StartCoroutine(AnimationPlay());
     }
 
-    public IEnumerator AnimationPlay(){
-        yield return StartCoroutine(_animationBox.EndAnimation());
+    private IEnumerator AnimationPlay(){
+        //Animation
+        StartCoroutine(_animationBox.EndAnimation());
+        yield return StartCoroutine(_animationLevelSelector.StartAnimation());
+
+        //Pos Animation
+        _buttonManager_LevelSelector.SetInteractable(true);
+    }
+
+    public void OnClickBack(){
+        _buttonManager_LevelSelector.SetInteractable(false);
+        StartCoroutine(_animationLevelSelector.EndAnimation());
+        StartCoroutine(AnimationBack());
+    }
+
+    private IEnumerator AnimationBack(){
+        //Animation
+        yield return StartCoroutine(_animationBox.BackAnimation());
+
+        //Pos Animation
+        _buttonManager_Main.SetInteractable(true);
+    }
+
+    public void EnterLevel1(){
         GameManager.Instance.LoadScene(SceneIndex.Level1);
     }
 }

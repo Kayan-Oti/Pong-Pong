@@ -9,6 +9,7 @@ public class MatchManager : MonoBehaviour
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private UI_Manager_CountDown _countDownManager;
     [SerializeField] private UI_Manager_GameOver _gameOverManager;
+    [SerializeField] private ButtonsManager _gameOverButtonsManager;
     [SerializeField] private float _scoreToWin = 7;
     private Dictionary<ArenaSide, int> _scoreSides = new Dictionary<ArenaSide, int>();
 
@@ -41,8 +42,10 @@ public class MatchManager : MonoBehaviour
     }
 
     public void Rematch(){
-        StartCoroutine(_gameOverManager.EndAnimation());
         Debug.Log("Rematch");
+
+        _gameOverButtonsManager.SetInteractable(false);
+        StartCoroutine(_gameOverManager.EndAnimation());
 
         Invoke(nameof(StartMatch), 1.0f);
     }
@@ -53,7 +56,7 @@ public class MatchManager : MonoBehaviour
         _ball.ResetBall();
 
         if(_scoreSides[side] >= _scoreToWin)
-            EndOfMatch(side);
+            StartCoroutine(EndOfMatch(side));
         else
             StartCoroutine(NextRound());
     }
@@ -70,10 +73,11 @@ public class MatchManager : MonoBehaviour
         _ball.AddStartingForce();
     }
 
-    private void EndOfMatch(ArenaSide side){
+    private IEnumerator EndOfMatch(ArenaSide side){
         EventManager.MatchManger.OnEndMatch.Get().Invoke();
 
-        StartCoroutine(_gameOverManager.StartAnimation());
+        yield return StartCoroutine(_gameOverManager.StartAnimation());
+        _gameOverButtonsManager.SetInteractable(true);        
     }
 
     public void BackToMenu(){

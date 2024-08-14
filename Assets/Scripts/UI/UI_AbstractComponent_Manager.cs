@@ -13,7 +13,7 @@ public abstract class UI_AbstractComponent_Manager : MonoBehaviour
         GetListAnimations();
     }
 
-    [ContextMenu("Get List Buttons")]
+    [ContextMenu("Get List Animations")]
     private void GetListAnimations()
     {
         _listAnimations.Clear();
