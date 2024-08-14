@@ -25,6 +25,8 @@ public class MenuManager : MonoBehaviour
         _buttonManager_Main.SetInteractable(true);
     }
 
+    #region Onclick
+    
     public void OnClick_Play(){
         _buttonManager_Main.SetInteractable(false);
         StartCoroutine(AnimationPlay());
@@ -53,7 +55,23 @@ public class MenuManager : MonoBehaviour
         _buttonManager_Main.SetInteractable(true);
     }
 
+    #endregion
+
+    #region LevelSelector
+
     public void EnterLevel1(){
         GameManager.Instance.LoadScene(SceneIndex.Level1);
     }
+    public void EnterLevel2(){
+        GameManager.Instance.LoadScene(SceneIndex.Level1);
+    }
+    public void EnterLevel3(){
+        GameManager.Instance.LoadScene(SceneIndex.Level1);
+    }
+    public void EnterLevel4(){
+        GameManager.Instance.LoadScene(SceneIndex.Level1);
+    }
+    
+    #endregion
+
 }

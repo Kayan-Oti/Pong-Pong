@@ -23,6 +23,12 @@ public static class EventManager
         public class ScoreEvent: UnityEvent<ArenaSide> {}
         public GenericEvent<ScoreEvent> OnScore = new GenericEvent<ScoreEvent>();
 
+        public class StartRoundEvent: UnityEvent {}
+        public GenericEvent<StartRoundEvent> OnStartRound = new GenericEvent<StartRoundEvent>();
+
+        public class EndRoundEvent: UnityEvent {}
+        public GenericEvent<EndRoundEvent> OnEndRound = new GenericEvent<EndRoundEvent>();
+
         public class EndMatchEvent: UnityEvent {}
         public GenericEvent<EndMatchEvent> OnEndMatch = new GenericEvent<EndMatchEvent>();
 

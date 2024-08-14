@@ -6,6 +6,9 @@ public abstract class CharacterBOT : Character
     [SerializeField] protected Rigidbody2D _ballRigidbody;
 
     private void Update(){
+        if (!_canMove)
+            return;
+
         IAControl();
     }
 
