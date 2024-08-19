@@ -11,11 +11,6 @@ public abstract class CharacterBOT : Character
 
         IAControl();
     }
-
-    private void FixedUpdate() {
-        if(_direction.sqrMagnitude != 0)
-            _rigidbody.AddForce(_direction * _characterData.speed);
-    }
     
     public abstract void IAControl();
 }

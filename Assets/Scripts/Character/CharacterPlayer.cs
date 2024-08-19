@@ -20,10 +20,4 @@ public class CharacterPlayer : Character
             _paddle.ChangeAimSide();
         }
     }
-
-    private void FixedUpdate() {
-        if(_direction.sqrMagnitude != 0)
-            _rigidbody.AddForce(_direction * _characterData.speed);
-    }
-
 }
