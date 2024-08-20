@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class CharacterPlayer : Character
 {
-    private void Update() {
-        if (!_canMove)
-            return;
-        
+    public override void HandleInput()
+    {
         //Movimentação
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
             _direction = Vector2.up;
