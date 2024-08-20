@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterBOT_LevelTeste : CharacterBOT
 {
-    public override void IAControl()
+    public override void HandleInput()
     {
         if(_ballRigidbody.velocity.x > 0.0f){
             if(_ballRigidbody.position.y >  transform.position.y)

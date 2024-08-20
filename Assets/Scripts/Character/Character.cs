@@ -6,7 +6,6 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected ArenaSide _playerSide = ArenaSide.Left;
     
     [SerializeField] protected SO_CharacterData _characterData;
-    protected Paddle _paddle;
     protected Vector2 _direction;
     protected Vector2 _defaultPosition;
     protected bool _canMove;
@@ -14,6 +13,7 @@ public abstract class Character : MonoBehaviour
     //Components
     protected Rigidbody2D _rigidbody;
     protected Animator _animatorController;
+    protected Paddle _paddle;
 
     #region Unity Setup
     private void OnEnable(){
@@ -55,6 +55,14 @@ public abstract class Character : MonoBehaviour
 
     #endregion
 
+    #region Update
+    private void Update(){
+        if (!_canMove)
+            return;
+
+        HandleInput();
+    }
+
     private void FixedUpdate() {
         if(_direction.sqrMagnitude != 0){
             _rigidbody.AddForce(_direction * _characterData.speed);
@@ -63,4 +71,9 @@ public abstract class Character : MonoBehaviour
             _animatorController.SetBool("isMoving", false);
         }
     }
+
+    #endregion
+
+    //Abstract
+    abstract public void HandleInput();
 }

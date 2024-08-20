@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] private GameObject _loadingScreen;
-    private int _currentSceneIndex;
     private List<AsyncOperation> _scenesLoading = new List<AsyncOperation>();
+    private int _currentSceneIndex;
 
+    #region Initial Setup
     private void Awake() {
         if(Instance == null)
             Instance = this;
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
 
         OnSceneLoaded();
     }
+
+    #endregion
 
     public void LoadScene(SceneIndex scene){
         StartCoroutine(GetSceneLoadProgress(scene));
