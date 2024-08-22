@@ -7,6 +7,8 @@ public static class EventManager
 {
     public static readonly MatchEvents MatchManger = new MatchEvents();
     public static readonly GameEvents GameManager = new GameEvents();
+    public static readonly DialogueEvents DialogueManager = new DialogueEvents();
+
 
 
     public class GenericEvent<T> where T: class, new()
@@ -17,6 +19,13 @@ public static class EventManager
             map.TryAdd(channel, new T());
             return map[channel];
         }
+    }
+
+    public class GameEvents{
+        public class ChangingScene: UnityEvent {}
+        public GenericEvent<ChangingScene> OnChanginScene = new GenericEvent<ChangingScene>();
+        public class LoadedScene: UnityEvent {}
+        public GenericEvent<LoadedScene> OnLoadedScene = new GenericEvent<LoadedScene>();
     }
 
     public class MatchEvents{
@@ -34,10 +43,10 @@ public static class EventManager
 
     }
 
-    public class GameEvents{
-        public class ChangingScene: UnityEvent {}
-        public GenericEvent<ChangingScene> OnChanginScene = new GenericEvent<ChangingScene>();
-        public class LoadedScene: UnityEvent {}
-        public GenericEvent<LoadedScene> OnLoadedScene = new GenericEvent<LoadedScene>();
+    public class DialogueEvents{
+        public class StartDialogueEvent: UnityEvent<SO_Dialogue> {}
+        public GenericEvent<StartDialogueEvent> OnStartDialogue = new GenericEvent<StartDialogueEvent>();
+        public class EndDialogueEvent: UnityEvent {}
+        public GenericEvent<StartDialogueEvent> OnEndDialogue = new GenericEvent<StartDialogueEvent>();
     }
 }

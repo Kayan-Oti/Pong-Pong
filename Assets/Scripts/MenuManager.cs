@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private ButtonsManager _buttonManager_Main, _buttonManager_LevelSelector;
 
     [Header("Values")]
-    [SerializeField] private float _delayToStart = 1.0f;
+    [SerializeField] private const float DELAY_TO_START = 1.0f;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     }
 
     private IEnumerator StartAnimation(){
-        yield return new WaitForSeconds(_delayToStart);
+        yield return new WaitForSeconds(DELAY_TO_START);
         yield return StartCoroutine(_animationBox.StartAnimation());
         yield return StartCoroutine(_managerAnimationButtons.StartAnimation());
         _buttonManager_Main.SetInteractable(true);
@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
 
     #region Onclick
     
+    //--Menu Play
     public void OnClick_Play(){
         _buttonManager_Main.SetInteractable(false);
         StartCoroutine(AnimationPlay());
@@ -41,6 +42,7 @@ public class MenuManager : MonoBehaviour
         _buttonManager_LevelSelector.SetInteractable(true);
     }
 
+    //--Menu Back
     public void OnClickBack(){
         _buttonManager_LevelSelector.SetInteractable(false);
         StartCoroutine(_animationLevelSelector.EndAnimation());
