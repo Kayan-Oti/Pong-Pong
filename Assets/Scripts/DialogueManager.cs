@@ -5,6 +5,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private UI_Manager_Dialogue _animationManager;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private SO_Dialogue _dialogue;
@@ -16,6 +17,47 @@ public class DialogueManager : MonoBehaviour
     private const float MAX_TYPE_TIME = 0.5f;
     private bool _isTyping = false;
 
+    private void Start(){
+        ResetText();
+    }
+
+    private void ResetText(){
+        _nameText.text = "";
+        _dialogueText.text = "";
+    }
+
+    [ContextMenu("StartDialogue")]
+    public void StartDialogue(){
+        StartCoroutine(StartDialogueCoroutine());
+    }
+
+    private IEnumerator StartDialogueCoroutine(){
+        ResetText();
+        
+        //Wait Animation End
+        yield return StartCoroutine(_animationManager.StartAnimation());
+        
+        //Display name
+        _nameText.text = _dialogue.Name;
+
+        //Adiciona paragrafos na fila
+        foreach(string paragraph in _dialogue.Paragraphs)
+            _paragraphs.Enqueue(paragraph);
+
+        //Escreve o primeiro paragrafo
+        DisplayNextParagraph();
+    }
+
+    private void EndDialogue(){
+        _paragraphs.Clear();
+        Debug.Log("EndDialogue");
+        StartCoroutine(AnimationEndDialogue());
+    }
+
+    private IEnumerator AnimationEndDialogue(){
+        yield return StartCoroutine(_animationManager.EndAnimation());
+        EventManager.DialogueManager.OnEndDialogue.Get().Invoke();
+    }
 
     [ContextMenu("Next Paragraph")]
     public void DisplayNextParagraph(){
@@ -36,26 +78,6 @@ public class DialogueManager : MonoBehaviour
             _typeDialogueCoroutine = StartCoroutine(TypeDialogueText());
         }
     }
-
-    [ContextMenu("StartDialogue")]
-    public void StartDialogue(){
-        //Display name
-        _nameText.text = _dialogue.Name;
-
-        //Adiciona paragrafos na fila
-        foreach(string paragraph in _dialogue.Paragraphs)
-            _paragraphs.Enqueue(paragraph);
-
-        //Escreve o primeiro paragrafo
-        DisplayNextParagraph();
-    }
-
-    private void EndDialogue(){
-        _paragraphs.Clear();
-        Debug.Log("EndDialogue");
-        gameObject.SetActive(false);
-    }
-
     private IEnumerator TypeDialogueText()
     {
         _isTyping = true;

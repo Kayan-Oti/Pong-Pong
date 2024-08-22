@@ -5,12 +5,12 @@ using UnityEngine;
 public class LoadingScreen : MonoBehaviour
 {
     private void OnEnable() {
-        Debug.Log("Active");
+        Debug.Log("Active LoadingScreen");
         EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadedScene);
     }
 
     private void OnDisable() {
-        Debug.Log("Disable");
+        Debug.Log("Disable LoadginScreen");
         EventManager.GameManager.OnLoadedScene.Get().RemoveListener(OnLoadedScene);
     }
 
