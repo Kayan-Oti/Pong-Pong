@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lesma
   Paragraphs:
-  - 'Algora que uma lesma diria.
+  - 'Algo que uma lesma diria.
 
     Teste de quebra de linha.'
   - 'Teste novo paragrafo + overflow.

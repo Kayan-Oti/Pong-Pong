@@ -38,7 +38,7 @@ public static class EventManager
         public class EndRoundEvent: UnityEvent {}
         public GenericEvent<EndRoundEvent> OnEndRound = new GenericEvent<EndRoundEvent>();
 
-        public class EndMatchEvent: UnityEvent {}
+        public class EndMatchEvent: UnityEvent<ArenaSide> {}
         public GenericEvent<EndMatchEvent> OnEndMatch = new GenericEvent<EndMatchEvent>();
 
     }
@@ -47,6 +47,6 @@ public static class EventManager
         public class StartDialogueEvent: UnityEvent<SO_Dialogue> {}
         public GenericEvent<StartDialogueEvent> OnStartDialogue = new GenericEvent<StartDialogueEvent>();
         public class EndDialogueEvent: UnityEvent {}
-        public GenericEvent<StartDialogueEvent> OnEndDialogue = new GenericEvent<StartDialogueEvent>();
+        public GenericEvent<EndDialogueEvent> OnEndDialogue = new GenericEvent<EndDialogueEvent>();
     }
 }
