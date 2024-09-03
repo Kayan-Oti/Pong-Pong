@@ -8,10 +8,15 @@ public class MatchManager : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private Ball _ball;
     [SerializeField] private ScoreManager _scoreManager;
+    [SerializeField] private Animation_CameraShake _cameraShake;
 
     [Header("UI Managers")]
     [SerializeField] private UI_Manager_CountDown _countDownManager;
+
+    [Header("Values")]
     [SerializeField] private float _scoreToWin = 7;
+
+
     private Dictionary<ArenaSide, int> _scoreSides = new Dictionary<ArenaSide, int>();
 
     private void OnEnable() {
@@ -50,16 +55,22 @@ public class MatchManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(_countDownManager.StartAnimation());
-
         yield return new WaitForSeconds(0.25f);
+
         _ball.AddStartingForce();
     }
 
     public void EndRound(ArenaSide side){
         //Fim da Rodada
         EventManager.MatchManger.OnEndRound.Get().Invoke();
+        StartCoroutine(EndRoundActions(side));
+    }
+
+    private IEnumerator EndRoundActions(ArenaSide side){
 
         //Animações e configurações pos rodada
+        yield return StartCoroutine(_cameraShake.StartShake());
+
         AddScore(side);
         _ball.ResetBall();
 

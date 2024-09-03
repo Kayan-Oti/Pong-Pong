@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aae8a6866d5d74dbf82fc15d02f5a7, type: 3}
   m_Name: DialogueTeste
   m_EditorClassIdentifier: 
-  Name: Lesma
+  Name: Caracol
   Paragraphs:
-  - 'Algo que uma lesma diria.
+  - 'Algo que um caracol diria.
 
     Teste de quebra de linha.'
   - 'Teste novo paragrafo + overflow.

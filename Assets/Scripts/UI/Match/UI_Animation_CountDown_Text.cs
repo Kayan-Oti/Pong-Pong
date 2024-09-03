@@ -38,16 +38,14 @@ public class UI_Animation_CountDown_Text : UI_AbstractComponent_Animation
 
     public override IEnumerator StartAnimation()
     {
-        Sequence startAnimationSequence = DOTween.Sequence();
-        startAnimationSequence
+        Sequence startAnimationSequence = DOTween.Sequence()
             .Insert(1,_rectTransform.DOAnchorPosY(_defaultPos.y, _animationDuration).SetEase(_customEaseStart))
             .Insert(1,_canvasGroup.DOFade(1f, _animationDuration));
         yield return startAnimationSequence.WaitForCompletion();
     }
 
     public override IEnumerator EndAnimation(){
-        Sequence startAnimationSequence = DOTween.Sequence();
-        startAnimationSequence
+        Sequence startAnimationSequence = DOTween.Sequence()
             .Insert(1,_rectTransform.DOAnchorPosY(_endPos, _animationDuration).SetEase(_customEaseEnd))
             .Insert(1,_canvasGroup.DOFade(0f, _animationDuration));
         yield return startAnimationSequence.WaitForCompletion();

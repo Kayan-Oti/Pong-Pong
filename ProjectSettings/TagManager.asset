@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: FrontSky
+    uniqueID: 2513783705
+    locked: 0
   - name: UI
     uniqueID: 47276935
     locked: 0
