@@ -6,6 +6,7 @@ public class UI_Animation_Scale : UI_AbstractComponent_Animation
 {
     //Propriets Inspector
     [SerializeField] private AnimationCurve _customEase;
+    private CanvasGroup _canvasGroup;
 
     //Components
     private RectTransform _rectTransform;
@@ -14,6 +15,8 @@ public class UI_Animation_Scale : UI_AbstractComponent_Animation
     {
         //Get Components
         _rectTransform = GetComponent<RectTransform>();
+        _canvasGroup = GetComponent<CanvasGroup>();
+
         SetComponents();
     }
 
@@ -25,12 +28,18 @@ public class UI_Animation_Scale : UI_AbstractComponent_Animation
     public override IEnumerator StartAnimation(){
         Tween animation = _rectTransform.DOScale(1f, _animationDuration).SetEase(_customEase);
         yield return animation.WaitForCompletion();
-
+        SetCanvasGroup(true);
     }
 
     public override IEnumerator EndAnimation()
     {
+        SetCanvasGroup(false);
         Tween animation = _rectTransform.DOScale(0f, _animationDuration).SetEase(_customEase);
         yield return animation.WaitForCompletion();
+    }
+
+    private void SetCanvasGroup(bool state){
+        _canvasGroup.interactable = state;
+        _canvasGroup.blocksRaycasts = state;
     }
 }

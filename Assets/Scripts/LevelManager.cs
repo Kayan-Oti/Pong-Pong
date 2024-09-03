@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator RematchCoroutine(){
         //Desativa UI
-        yield return _uiManager.DisableGameOverUI();
+        yield return StartCoroutine(_uiManager.DisableGameOverUI());
 
         //Inicia Nova Partida
         _matchManager.StartMatch();

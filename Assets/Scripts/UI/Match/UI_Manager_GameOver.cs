@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Collections;
 
 public class UI_Manager_GameOver : UI_AbstractComponent_Manager
@@ -9,16 +10,28 @@ public class UI_Manager_GameOver : UI_AbstractComponent_Manager
             animation.SetComponents();
             StartCoroutine(animation.StartAnimation());
         }
-        yield return  null;
+        yield return null;
     }
 
     public IEnumerator EndAnimation()
     {
+        int tally = 0;
+        
         foreach(UI_AbstractComponent_Animation animation in _listAnimations)
         {
-            StartCoroutine(animation.EndAnimation());
+            StartCoroutine(RunCoroutine(animation));
         }
 
-        yield return null;
+        while (tally > 0)
+        {
+            yield return null;
+        }
+
+        IEnumerator RunCoroutine(UI_AbstractComponent_Animation animation)
+        {
+            tally++;
+            yield return StartCoroutine(animation.EndAnimation());
+            tally--;
+        }
     }
 }
