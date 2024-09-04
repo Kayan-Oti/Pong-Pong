@@ -4,17 +4,18 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [Header("Animations Objects")]
-    [SerializeField] private UI_Animation_Box_Menu _animationBox;
-    [SerializeField] private UI_Animation_LevelSelector _animationLevelSelector;
+    [SerializeField] private UI_Animation_BoxMenu _animationBox;
+    [SerializeField] private UI_AbstractComponent_Animation _animationLevelSelector;
     [SerializeField] private UI_Manager_Buttons _managerAnimationButtons;
-
-    [SerializeField] private ButtonsManager _buttonManager_Main, _buttonManager_LevelSelector;
+    [SerializeField] private GameObject _backButton;
 
     [Header("Values")]
     [SerializeField] private const float DELAY_TO_START = 1.0f;
 
     void Start()
     {
+        _backButton.SetActive(false);
+
         StartCoroutine(StartAnimation());
     }
 
@@ -22,39 +23,27 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(DELAY_TO_START);
         yield return StartCoroutine(_animationBox.StartAnimation());
         yield return StartCoroutine(_managerAnimationButtons.StartAnimation());
-        _buttonManager_Main.SetInteractable(true);
     }
 
     #region Onclick
     
     //--Menu Play
     public void OnClick_Play(){
-        _buttonManager_Main.SetInteractable(false);
-        StartCoroutine(AnimationPlay());
+        StartCoroutine(_animationBox.EndAnimation());
+        StartCoroutine(OnClick_Play_WaitAnimationEnd());
     }
 
-    private IEnumerator AnimationPlay(){
-        //Animation
-        StartCoroutine(_animationBox.EndAnimation());
+    private IEnumerator OnClick_Play_WaitAnimationEnd(){
         yield return StartCoroutine(_animationLevelSelector.StartAnimation());
-
-        //Pos Animation
-        _buttonManager_LevelSelector.SetInteractable(true);
+        _backButton.SetActive(true);
     }
 
     //--Menu Back
-    public void OnClickBack(){
-        _buttonManager_LevelSelector.SetInteractable(false);
+    public void OnClick_Back(){
+        _backButton.SetActive(false);
+
         StartCoroutine(_animationLevelSelector.EndAnimation());
-        StartCoroutine(AnimationBack());
-    }
-
-    private IEnumerator AnimationBack(){
-        //Animation
-        yield return StartCoroutine(_animationBox.BackAnimation());
-
-        //Pos Animation
-        _buttonManager_Main.SetInteractable(true);
+        StartCoroutine(_animationBox.BackAnimation());
     }
 
     #endregion

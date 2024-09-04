@@ -6,7 +6,6 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private MatchManager _matchManager;
     [SerializeField] private DialogueManager _dialogueManager;
-    [SerializeField] private UIManager _uiManager;
 
     #region Unity Setup
     private void OnEnable() {
@@ -44,7 +43,7 @@ public class LevelManager : MonoBehaviour
     #region Match Events
 
     private void OnEndMatch(ArenaSide side){
-        StartCoroutine(_uiManager.EnableGameOverUI());
+        StartCoroutine(_matchManager.EnableGameOverUI());
     }
 
     #endregion
@@ -59,7 +58,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator RematchCoroutine(){
         //Desativa UI
-        yield return StartCoroutine(_uiManager.DisableGameOverUI());
+        yield return StartCoroutine(_matchManager.DisableGameOverUI());
 
         //Inicia Nova Partida
         _matchManager.StartMatch();

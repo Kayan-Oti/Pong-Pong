@@ -12,6 +12,7 @@ public class MatchManager : MonoBehaviour
 
     [Header("UI Managers")]
     [SerializeField] private UI_Manager_CountDown _countDownManager;
+    [SerializeField] private UI_Manager_GameOver _gameOverManager;
 
     [Header("Values")]
     [SerializeField] private float _scoreToWin = 7;
@@ -89,5 +90,13 @@ public class MatchManager : MonoBehaviour
     }
 
     #endregion
+
+    public IEnumerator EnableGameOverUI(){
+        yield return StartCoroutine(_gameOverManager.StartAnimation());
+    }
+
+    public IEnumerator DisableGameOverUI(){
+        yield return StartCoroutine(_gameOverManager.EndAnimation());
+    }
 
 }

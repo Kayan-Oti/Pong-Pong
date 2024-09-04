@@ -4,20 +4,26 @@ using UnityEngine;
 
 public abstract class UI_AbstractComponent_Manager : MonoBehaviour
 {
-    //Propriets Inspector
-    [SerializeField] protected float _delayTimeBetween = 0.25f;
-    [SerializeField] protected List<UI_AbstractComponent_Animation> _listAnimations = new List<UI_AbstractComponent_Animation>();
-
-    private void Start()
+    #region Common Methods
+    public void GetListAnimationsInChildren(List<UI_AbstractComponent_Animation> list)
     {
-        GetListAnimations();
+        list.Clear();
+        GetComponentsInChildren(list);
     }
 
-    [ContextMenu("Get List Animations")]
-    private void GetListAnimations()
+    public IEnumerator CountCoroutine(UI_AbstractComponent_Animation animation,int count)
     {
-        _listAnimations.Clear();
-        GetComponentsInChildren(_listAnimations);
+        count++;
+        yield return StartCoroutine(animation.EndAnimation());
+        count--;
     }
+
+    #endregion
+
+    #region Abstracts
+
     public abstract IEnumerator StartAnimation();
+    public abstract IEnumerator EndAnimation();
+
+    #endregion
 }

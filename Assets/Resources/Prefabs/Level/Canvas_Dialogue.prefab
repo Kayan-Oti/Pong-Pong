@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 5725993435985492669}
   - component: {fileID: 2532860535607251931}
   - component: {fileID: 3743442908537639532}
-  - component: {fileID: 8637682247874171926}
+  - component: {fileID: 2726624095764778002}
   m_Layer: 5
   m_Name: Container_Background
   m_TagString: Untagged
@@ -458,7 +458,7 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &8637682247874171926
+--- !u!114 &2726624095764778002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -467,36 +467,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 4085351597348973256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f701c59540eaa74ab4e1fc39f3accc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
-  _distanceToAnimate: {x: 0, y: 0}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -734,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122212604850933739}
   - component: {fileID: 2600054448227195644}
-  - component: {fileID: 3456675172988106114}
+  - component: {fileID: 4276268419306770055}
   m_Layer: 5
   m_Name: Container_CharacterDisplay
   m_TagString: Untagged
@@ -774,7 +773,7 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &3456675172988106114
+--- !u!114 &4276268419306770055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -783,12 +782,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6623857739698427558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 1.5
-  _distanceToAnimate: {x: 650, y: 0}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -812,14 +810,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -827,8 +825,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -836,6 +834,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _distanceStart: {x: 650, y: 0}
+  _distanceEnd: {x: 650, y: 0}
 --- !u!1 &6945028218732725623
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 1
-  _customEase:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -955,6 +955,30 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _easeEnd:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
