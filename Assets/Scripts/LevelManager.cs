@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -65,6 +66,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void BackToMenu(){
+        DOTween.KillAll();
         GameManager.Instance.LoadScene(SceneIndex.Menu);
     }
 

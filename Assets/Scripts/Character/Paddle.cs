@@ -23,6 +23,8 @@ public class Paddle : MonoBehaviour
     }
 
     public void Reset(){
+        if(_aimSide != AimSide.Down)
+            ChangeAimSide();
         _aimSide = AimSide.Down;
     }
 
