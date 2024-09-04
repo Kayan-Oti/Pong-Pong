@@ -144,7 +144,6 @@ GameObject:
   m_Component:
   - component: {fileID: 694001199434593011}
   - component: {fileID: 948208076017847757}
-  - component: {fileID: 3288916888918889169}
   m_Layer: 5
   m_Name: Container_ManagerButtons
   m_TagString: Untagged
@@ -199,21 +198,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3288916888918889169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796701731510219908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f55d313a29b9bf408483f1b99db3a4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _listButtons:
-  - {fileID: 3980526865127485036}
-  - {fileID: 8526068307960800153}
 --- !u!1 &1054683715092822326
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,10 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9556f079dccc37a4ea39500425b6cd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayTimeBetween: 0.1
-  _listAnimations:
-  - {fileID: 3884182341494091224}
-  - {fileID: 4286861760390034875}
+  _timeIdle: 0.25
+  _animation1: {fileID: 2030377833802296921}
+  _animation2: {fileID: 3805952850603512264}
 --- !u!1 &1140122941805130719
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +748,7 @@ GameObject:
   - component: {fileID: 481926572474636146}
   - component: {fileID: 7500915813622982865}
   - component: {fileID: 7386286214730895368}
-  - component: {fileID: 4182604831315911263}
+  - component: {fileID: 1877789917357143237}
   m_Layer: 5
   m_Name: Container_Background
   m_TagString: Untagged
@@ -842,7 +825,7 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4182604831315911263
+--- !u!114 &1877789917357143237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -851,36 +834,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137626143179348006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f701c59540eaa74ab4e1fc39f3accc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
-  _distanceToAnimate: {x: 0, y: 0}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1123,10 +1105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa4b0fd7d2ccb0409f6a6e8f8c172d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayTimeBetween: 0
   _listAnimations:
-  - {fileID: 4182604831315911263}
-  - {fileID: 5811446250974595752}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2931619033955533304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,9 +1252,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8266534871423655853}
   - component: {fileID: 4820497201035721690}
-  - component: {fileID: 4286861760390034875}
+  - component: {fileID: 3805952850603512264}
   m_Layer: 5
-  m_Name: Container_Text
+  m_Name: Container_Text2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1311,7 +1292,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4286861760390034875
+--- !u!114 &3805952850603512264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1320,12 +1301,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3094470855534061459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
-  _distanceToAnimate: {x: 0, y: 200}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1349,7 +1329,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1373,6 +1353,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _distanceStart: {x: 0, y: 200}
+  _distanceEnd: {x: 0, y: -200}
 --- !u!1 &3444619516792803612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,9 +1670,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6684330198288826518}
   - component: {fileID: 6606491707111574440}
-  - component: {fileID: 3884182341494091224}
+  - component: {fileID: 2030377833802296921}
   m_Layer: 5
-  m_Name: Container_Text
+  m_Name: Container_Text1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1728,7 +1710,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &3884182341494091224
+--- !u!114 &2030377833802296921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1737,12 +1719,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5254751298915439203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
-  _distanceToAnimate: {x: 0, y: 200}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1766,7 +1747,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1790,6 +1771,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _distanceStart: {x: 0, y: 200}
+  _distanceEnd: {x: 0, y: -200}
 --- !u!1 &5468326399862347903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2253,7 @@ GameObject:
   - component: {fileID: 2786228511894722350}
   - component: {fileID: 1232254239871699039}
   - component: {fileID: 2575069952778562180}
-  - component: {fileID: 5811446250974595752}
+  - component: {fileID: 2711277507013059626}
   m_Layer: 5
   m_Name: Container_Box
   m_TagString: Untagged
@@ -2349,7 +2332,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5811446250974595752
+--- !u!114 &2711277507013059626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2358,12 +2341,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7703044922099916239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d5fbd7c0f47854a8361b6a629e0ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 1
-  _distanceToAnimate: {x: 0, y: 600}
-  _customEaseStart:
+  _easeStart:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -2387,14 +2369,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _customEaseEnd:
+  _easeEnd:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -2402,8 +2384,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -2411,6 +2393,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _distanceStart: {x: 0, y: 600}
+  _distanceEnd: {x: 0, y: -600}
 --- !u!1 &7782850095943490083
 GameObject:
   m_ObjectHideFlags: 0

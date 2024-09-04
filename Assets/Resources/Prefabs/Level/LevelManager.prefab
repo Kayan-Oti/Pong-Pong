@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ff826c7ebf9f34ba9a529543f4e105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameOverButtonsManager: {fileID: 0}
-  _gameOverManager: {fileID: 0}
   _matchManager: {fileID: 0}
   _dialogueManager: {fileID: 0}
