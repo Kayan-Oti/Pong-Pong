@@ -1,21 +1,23 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterPlayer : Character
 {
+    public void Awake()
+    {
+        InputManager.Instance.playerInputActions.Player.ChangeAim.performed += ChangeAim;
+    }
+
     public override void HandleInput()
     {
         //Movimentação
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-            _direction = Vector2.up;
-        } else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-            _direction = Vector2.down;
-        }else {
-            _direction = Vector2.zero;
-        }
+        _direction = InputManager.Instance.playerInputActions.Player.Movement.ReadValue<Vector2>();
+    }
 
-        //Paddle Aim
-        if(Input.GetKeyDown(KeyCode.Space)){
-            _paddle.ChangeAimSide();
-        }
+    public void ChangeAim(InputAction.CallbackContext context){
+        if(!_canMove)
+            return;
+
+        _paddle.ChangeAimSide();
     }
 }

@@ -56,7 +56,6 @@ public class MatchManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(_countDownManager.StartAnimation());
-        yield return new WaitForSeconds(0.25f);
 
         _ball.AddStartingForce();
     }

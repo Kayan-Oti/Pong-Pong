@@ -1051,6 +1051,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8375988427814321102, guid: 51cd556b2cf98b44fa8643631a3ebdb3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 653176468921938466}
+    - targetCorrespondingSourceObject: {fileID: 8375988427814321102, guid: 51cd556b2cf98b44fa8643631a3ebdb3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6362822534203184808}
   m_SourcePrefab: {fileID: 100100000, guid: 51cd556b2cf98b44fa8643631a3ebdb3, type: 3}
 --- !u!1 &2652669894574121442 stripped
 GameObject:
@@ -1078,11 +1081,68 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6362822534203184808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652669894574121442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2ecba4ea1367c6d4ba74a72d118bb4a4, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5307703304766907730}
+        m_TargetAssemblyTypeName: CharacterPlayer, Assembly-CSharp
+        m_MethodName: ChangeAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f73d914-d357-460c-b8b5-28d8aa75d566
+    m_ActionName: Player/ChangeAim[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!4 &3749300198473444356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7270323295132497448, guid: 51cd556b2cf98b44fa8643631a3ebdb3, type: 3}
   m_PrefabInstance: {fileID: 5831405251396180524}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5307703304766907730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1821020120766316414, guid: 51cd556b2cf98b44fa8643631a3ebdb3, type: 3}
+  m_PrefabInstance: {fileID: 5831405251396180524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2652669894574121442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14b8fba439497d4cbcb681523495099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7422871646714377373
 PrefabInstance:
   m_ObjectHideFlags: 0

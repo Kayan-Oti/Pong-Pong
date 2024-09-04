@@ -14,10 +14,6 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         if(Instance == null)
             Instance = this;
-        else{
-            Debug.Log("A second GameManager was Created & Destroyed");
-            Destroy(gameObject);
-        }
 
         StartCoroutine(LoadMenu());
     }

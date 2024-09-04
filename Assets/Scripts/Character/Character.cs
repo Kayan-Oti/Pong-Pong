@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public abstract class Character : MonoBehaviour
     public void StartRoundSetup()
     {
         _paddle.Reset();
-        transform.localPosition = _defaultPosition;
+        transform.DOLocalMove(_defaultPosition, 0.5f).SetEase(_characterData.easeResetPosition);
         _canMove = true;
     }
 
