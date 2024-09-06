@@ -12,10 +12,24 @@ public class MenuManager : MonoBehaviour
     [Header("Values")]
     [SerializeField] private const float DELAY_TO_START = 1.0f;
 
+    private void OnEnable() {
+        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
+    }
+
+    private void OnDisable() {
+        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
+    }
+
     void Start()
     {
-        _backButton.SetActive(false);
+        SetBackButtonActive(false);
+    }
 
+    private void SetBackButtonActive(bool state){
+        _backButton.SetActive(state);
+    }
+
+    private void OnLoadScene(){
         StartCoroutine(StartAnimation());
     }
 
@@ -30,17 +44,12 @@ public class MenuManager : MonoBehaviour
     //--Menu Play
     public void OnClick_Play(){
         StartCoroutine(_animationBox.EndAnimation());
-        StartCoroutine(OnClick_Play_WaitAnimationEnd());
-    }
-
-    private IEnumerator OnClick_Play_WaitAnimationEnd(){
-        yield return StartCoroutine(_animationLevelSelector.StartAnimation());
-        _backButton.SetActive(true);
+        StartCoroutine(_animationLevelSelector.StartAnimation(()=> SetBackButtonActive(true)));
     }
 
     //--Menu Back
     public void OnClick_Back(){
-        _backButton.SetActive(false);
+        SetBackButtonActive(false);
 
         StartCoroutine(_animationLevelSelector.EndAnimation());
         StartCoroutine(_animationBox.BackAnimation());

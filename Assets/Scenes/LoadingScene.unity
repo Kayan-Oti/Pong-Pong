@@ -580,7 +580,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &1722024585
 GameObject:
@@ -592,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722024586}
   - component: {fileID: 1722024587}
+  - component: {fileID: 1722024588}
   m_Layer: 0
   m_Name: Container_Box
   m_TagString: Untagged
@@ -632,6 +633,69 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1722024588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722024585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b901df539701fe4c80ab2447d3f49ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _easeStart:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _easeEnd:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _distanceStart: {x: 0, y: -1500}
+  _distanceEnd: {x: 0, y: 1500}
 --- !u!1 &1742736630
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1742736631
 Transform:
   m_ObjectHideFlags: 0
@@ -677,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0617544ebdc1394a864d7121ca1d257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animation: {fileID: 1722024588}
 --- !u!1 &2011971049
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5df3f23a2f43246a2ce5fb68386fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingScreen: {fileID: 1742736630}
+  _loadingScreen: {fileID: 1742736632}
 --- !u!4 &2011971051
 Transform:
   m_ObjectHideFlags: 0

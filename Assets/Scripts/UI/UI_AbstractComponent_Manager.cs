@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class UI_AbstractComponent_Manager : MonoBehaviour
 {
+    protected int _countCoroutines;
+
     #region Common Methods
     public void GetListAnimationsInChildren(List<UI_AbstractComponent_Animation> list)
     {
@@ -11,11 +13,11 @@ public abstract class UI_AbstractComponent_Manager : MonoBehaviour
         GetComponentsInChildren(list);
     }
 
-    public IEnumerator CountCoroutine(UI_AbstractComponent_Animation animation,int count)
+    public IEnumerator CountCoroutine(IEnumerator animation)
     {
-        count++;
-        yield return StartCoroutine(animation.EndAnimation());
-        count--;
+        _countCoroutines++;
+        yield return StartCoroutine(animation);
+        _countCoroutines--;
     }
 
     #endregion

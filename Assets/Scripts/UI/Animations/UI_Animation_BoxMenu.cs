@@ -16,7 +16,7 @@ public class UI_Animation_BoxMenu : UI_AbstractComponent_Animation_Position
 
     public override void SetComponents(){
         //Set Components
-        _rectTransform.transform.localPosition += (Vector3)_startPos;
+        _rectTransform.transform.localPosition = (Vector3)_startPos;
         _canvasGroup.alpha = 0f;
     }
 

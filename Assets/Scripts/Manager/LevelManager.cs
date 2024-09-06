@@ -36,6 +36,10 @@ public class LevelManager : MonoBehaviour
     }
 
     private void OnEndDialogue(){
+        StartMatch();
+    }
+
+    private void StartMatch(){
         _matchManager.StartMatch();
     }
 
@@ -52,17 +56,7 @@ public class LevelManager : MonoBehaviour
     #region UI Events
 
     public void Rematch(){
-        Debug.Log("Rematch");
-
-        StartCoroutine(RematchCoroutine());
-    }
-
-    private IEnumerator RematchCoroutine(){
-        //Desativa UI
-        yield return StartCoroutine(_matchManager.DisableGameOverUI());
-
-        //Inicia Nova Partida
-        _matchManager.StartMatch();
+        StartCoroutine(_matchManager.DisableGameOverUI(() => StartMatch()));
     }
 
     public void BackToMenu(){

@@ -1015,10 +1015,86 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Match
       objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877789917357143237, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 2523130493752277961, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      propertyPath: _easeEnd.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3015045104528287201, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1075,11 +1151,83 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 345770142}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2711277507013059626, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703044922099916239, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7257080128081871665}
   m_SourcePrefab: {fileID: 100100000, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+--- !u!1 &7257080128081871664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703044922099916239, guid: 5a5744a12a7b26d48940f1d225d70df9, type: 3}
+  m_PrefabInstance: {fileID: 7257080128081871663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7257080128081871665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257080128081871664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b901df539701fe4c80ab2447d3f49ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _easeStart:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _easeEnd:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _distanceStart: {x: 0, y: 800}
+  _distanceEnd: {x: 0, y: -800}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

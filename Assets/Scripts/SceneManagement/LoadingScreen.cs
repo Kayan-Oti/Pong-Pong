@@ -1,20 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LoadingScreen : MonoBehaviour
 {
-    private void OnEnable() {
-        Debug.Log("Active LoadingScreen");
-        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadedScene);
+    [SerializeField] private UI_AbstractComponent_Animation _animation;
+
+    public Coroutine OnStartLoadScene(){
+        return StartCoroutine(AnimationOnStartLoading());
     }
 
-    private void OnDisable() {
-        Debug.Log("Disable LoadginScreen");
-        EventManager.GameManager.OnLoadedScene.Get().RemoveListener(OnLoadedScene);
+    public void OnEndLoadScene(Action DoLast){
+        StartCoroutine(AnimationOnEndLoading(DoLast));
     }
 
-    private void OnLoadedScene(){
-        gameObject.SetActive(false);
+    private IEnumerator AnimationOnStartLoading(){
+        yield return StartCoroutine(_animation.StartAnimation());
+    }
+
+    private IEnumerator AnimationOnEndLoading(Action DoLast){
+        yield return StartCoroutine(_animation.EndAnimation());
+        DoLast();
     }
 }
