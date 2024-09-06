@@ -47,6 +47,7 @@ public class MatchManager : MonoBehaviour
 
     #region MatchEvents
     public void StartMatch(){
+        Debug.Log("Start Match");
         StartMatchSetup();
         StartCoroutine(StartRound());
     }
@@ -67,14 +68,24 @@ public class MatchManager : MonoBehaviour
     }
 
     private IEnumerator EndRoundActions(ArenaSide side){
+        //Animations
 
-        //Animações e configurações pos rodada
+        //CameraShake
         yield return StartCoroutine(_cameraShake.StartShake());
-
+        
+        //Score Animation
+        //TODO
         AddScore(side);
+        
+        //Ball start Animation
+        //TODO
         _ball.ResetBall();
 
         //Nova rodada ou fim da partida
+        CheckEndOfMatch(side);
+    }
+
+    private void CheckEndOfMatch(ArenaSide side){
         if(_scoreSides[side] >= _scoreToWin){
             //Fim da partida
             EndMatch(side);
@@ -94,8 +105,9 @@ public class MatchManager : MonoBehaviour
         yield return StartCoroutine(_gameOverManager.StartAnimation());
     }
 
-    public IEnumerator DisableGameOverUI(){
+    public IEnumerator DisableGameOverUI(Action DoLast){
         yield return StartCoroutine(_gameOverManager.EndAnimation());
+        DoLast();
     }
 
 }

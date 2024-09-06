@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 
 public abstract class UI_AbstractComponent_Animation : MonoBehaviour
@@ -19,6 +20,7 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
 
         SetValues();
         SetComponents();
+        SetCanvasGroupState(false);
     }
 
     public void SetCanvasGroupState(bool state){
@@ -38,6 +40,21 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
         //After Animation
         SetCanvasGroupState(true);
     }
+
+    public IEnumerator StartAnimation(Action DoLast){
+        //Before animation
+        SetComponents();
+        SetCanvasGroupState(false);
+
+        //Animation
+        Tween animation = GetTweenStart();
+        yield return animation.WaitForCompletion();
+
+        //After Animation
+        SetCanvasGroupState(true);
+        DoLast();
+    }
+
     public IEnumerator EndAnimation(){
         //Before Animation
         SetCanvasGroupState(false);
@@ -47,6 +64,18 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
         yield return animation.WaitForCompletion();
 
         //After Animation
+    }
+
+    public IEnumerator EndAnimation(Action DoLast){
+        //Before Animation
+        SetCanvasGroupState(false);
+
+        //Animation
+        Tween animation = GetTweenEnd();
+        yield return animation.WaitForCompletion();
+
+        //After Animation
+        DoLast();
     }
 
     #region Abstract Methods

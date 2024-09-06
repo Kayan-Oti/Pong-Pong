@@ -12,7 +12,7 @@ public class UI_Animation_Position : UI_AbstractComponent_Animation_Position
     }
 
     public override void SetComponents(){
-        _rectTransform.transform.localPosition += (Vector3)_startPos;
+        _rectTransform.transform.localPosition = (Vector3)_startPos;
     }
 
     public override Tween GetTweenStart()

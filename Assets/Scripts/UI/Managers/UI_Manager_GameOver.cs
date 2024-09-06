@@ -20,16 +20,18 @@ public class UI_Manager_GameOver : UI_AbstractComponent_Manager
 
     public override IEnumerator EndAnimation()
     {
-        int count = 0;
+        _countCoroutines = 0;
         
         //Inicia todas as animações
         foreach(UI_AbstractComponent_Animation animation in _listAnimations)
         {
-            StartCoroutine(CountCoroutine(animation, count));
+            StartCoroutine(CountCoroutine(animation.EndAnimation()));
         }
 
         //Espera todas terminarem
-        while (count > 0)
-            yield return null;     
+        while (_countCoroutines > 0)
+            yield return null;
     }
+
+    
 }
