@@ -13,8 +13,12 @@ public abstract class UI_AbstractComponent_Manager : MonoBehaviour
         GetComponentsInChildren(list);
     }
 
-    public IEnumerator CountCoroutine(IEnumerator animation)
+    public void RunCoroutine(IEnumerator animation)
     {
+        StartCoroutine(CountCoroutine(animation));
+    }
+
+    private IEnumerator CountCoroutine(IEnumerator animation){
         _countCoroutines++;
         yield return StartCoroutine(animation);
         _countCoroutines--;
