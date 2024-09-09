@@ -19,16 +19,16 @@ public class UI_Animation_PositionFade : UI_AbstractComponent_Animation_Position
     public override Tween GetTweenStart()
     {
         Tween animation = DOTween.Sequence()
-            .Insert(1,_rectTransform.DOAnchorPos(_defaultPos, _animationDuration).SetEase(_easeStart))
-            .Insert(1,_canvasGroup.DOFade(1f, _animationDuration));
+            .Insert(0,_rectTransform.DOAnchorPos(_defaultPos, _animationDuration).SetEase(_easeStart))
+            .Insert(0,_canvasGroup.DOFade(1f, _animationDuration));
         return animation;
     }
 
     public override Tween GetTweenEnd()
     {
         Tween animation = DOTween.Sequence()
-            .Insert(1,_rectTransform.DOAnchorPos(_endPos, _animationDuration).SetEase(_easeEnd))
-            .Insert(1,_canvasGroup.DOFade(0f, _animationDuration));
+            .Insert(0,_rectTransform.DOAnchorPos(_endPos, _animationDuration).SetEase(_easeEnd))
+            .Insert(0,_canvasGroup.DOFade(0f, _animationDuration));
         return animation;
     }
 }
