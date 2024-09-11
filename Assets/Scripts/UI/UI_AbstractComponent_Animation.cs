@@ -3,6 +3,8 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(CanvasGroup))]
 
 public abstract class UI_AbstractComponent_Animation : MonoBehaviour
 {
