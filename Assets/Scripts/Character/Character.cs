@@ -1,5 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
+using System;
 
 public abstract class Character : MonoBehaviour
 {
@@ -44,14 +46,22 @@ public abstract class Character : MonoBehaviour
     public void StartRoundSetup()
     {
         _paddle.Reset();
-        transform.DOLocalMove(_defaultPosition, 0.5f).SetEase(_characterData.easeResetPosition);
-        _canMove = true;
+        StartCoroutine(AnimationReset(() => SetMoveState(true)));
     }
 
     public void EndRoundSetup()
     {
-        _canMove = false;
+        SetMoveState(false);
         _direction = Vector2.zero;
+    }
+
+    public void SetMoveState(bool state){
+        _canMove = state;
+    }
+
+    private IEnumerator AnimationReset(Action DoLast){
+        yield return transform.DOLocalMove(_defaultPosition, 0.5f).SetEase(_characterData.easeResetPosition).WaitForCompletion();
+        DoLast();
     }
 
     #endregion

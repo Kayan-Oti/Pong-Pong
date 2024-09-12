@@ -55,4 +55,8 @@ public class Ball : MonoBehaviour
     private void ChangeFacingDirection(Vector2 direction){
         transform.rotation = Quaternion.LookRotation(Vector3.forward, direction.normalized);
     }
+
+    void OnBecameInvisible() {
+        Invoke(nameof(ResetVelocity), 0.5f);
+    }
 }

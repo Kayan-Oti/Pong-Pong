@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using MyBox;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private UI_Manager_Dialogue _animationManager;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _dialogueText;
-    [SerializeField] private SO_Dialogue _dialogue;
     [SerializeField] private float typeSpeed = 1;
+    private SO_Dialogue _dialogue;
 
     private Queue<string> _paragraphs = new Queue<string>();
     private Coroutine _typeDialogueCoroutine;
     private string _currentParagraph;
-    private const float MAX_TYPE_TIME = 0.5f;
     private bool _isTyping = false;
+    private const float MAX_TYPE_TIME = 0.5f;
 
     private void Start(){
         ResetText();
@@ -26,8 +27,8 @@ public class DialogueManager : MonoBehaviour
         _dialogueText.text = "";
     }
 
-    [ContextMenu("StartDialogue")]
-    public void StartDialogue(){
+    public void StartDialogue(SO_Dialogue dialogue){
+        _dialogue = dialogue;
         StartCoroutine(StartDialogueCoroutine());
     }
 
@@ -51,15 +52,11 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue(){
         _paragraphs.Clear();
         Debug.Log("EndDialogue");
-        StartCoroutine(AnimationEndDialogue());
+        //Ao terminar a animação Invoke OnEndDialogue Event
+        StartCoroutine(_animationManager.EndAnimation(() => EventManager.DialogueManager.OnEndDialogue.Get().Invoke()));
     }
 
-    private IEnumerator AnimationEndDialogue(){
-        yield return StartCoroutine(_animationManager.EndAnimation());
-        EventManager.DialogueManager.OnEndDialogue.Get().Invoke();
-    }
-
-    [ContextMenu("Next Paragraph")]
+    [ButtonMethod]
     public void DisplayNextParagraph(){
 
         //Sem mais paragrafos, Dialogue End
@@ -72,12 +69,14 @@ public class DialogueManager : MonoBehaviour
         if(_isTyping){
             SkipTyping();
         }
+        
         //Novo paragrafo
         else{
             _currentParagraph = _paragraphs.Dequeue();
             _typeDialogueCoroutine = StartCoroutine(TypeDialogueText());
         }
     }
+
     private IEnumerator TypeDialogueText()
     {
         _isTyping = true;

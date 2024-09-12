@@ -1,12 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MyBox;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("GameObjects")]
     [SerializeField] private MatchManager _matchManager;
     [SerializeField] private DialogueManager _dialogueManager;
+    [SerializeField] private GameObject _buttonGameOver_PlayAgain;
+    [SerializeField] private GameObject _buttonGameOver_NextLevel;
+
+    [Header("Dialogue")]
+    [SerializeField] private SO_Dialogue _dialogueStart;
+    [Tooltip("On PLayer Win")]
+    [SerializeField] private SO_Dialogue _dialogueWin;
+    [Tooltip("On PLayer Lose")]
+    [SerializeField] private SO_Dialogue _dialogueLose;
+
+    [Header("Values")]
+    [SerializeField] private bool _hasNextLevel = false;
+    [ConditionalField(nameof(_hasNextLevel))][SerializeField] private SceneIndex _nextLevelIndex;
+    private ArenaSide _sideWinner;
+    private bool _startDialogueDone;
+    private const float DELAY_TO_START = 0.5f;
 
     #region Unity Setup
     private void OnEnable() {
@@ -27,33 +45,57 @@ public class LevelManager : MonoBehaviour
 
     #region Dialogue Events
     private void OnLoadedScene() {
-        Invoke(nameof(StartDialogue), 0.5f);
+        Invoke(nameof(StartDialogue), DELAY_TO_START);
     }
 
     [ContextMenu("StartDialogue")]
     private void StartDialogue(){
-        _dialogueManager.StartDialogue();
+        _dialogueManager.StartDialogue(_dialogueStart);
+    }
+
+    private void EndMatchDialogue(){
+        _dialogueManager.StartDialogue(_sideWinner.Equals(ArenaSide.Left)?_dialogueWin : _dialogueLose);
     }
 
     private void OnEndDialogue(){
-        StartMatch();
-    }
-
-    private void StartMatch(){
-        _matchManager.StartMatch();
+        if(!_startDialogueDone){
+            _startDialogueDone = true;
+            StartMatch();
+        }else{
+            EnableGameOverUI();
+        }
     }
 
     #endregion
 
     #region Match Events
+    private void StartMatch(){
+        _matchManager.StartMatch();
+    }
 
     private void OnEndMatch(ArenaSide side){
-        StartCoroutine(_matchManager.EnableGameOverUI());
+        _sideWinner = side;
+        EndMatchDialogue();
     }
 
     #endregion
 
     #region UI Events
+
+    private void EnableGameOverUI(){
+        SetStateGameOverButtons();
+        StartCoroutine(_matchManager.EnableGameOverUI());
+    }
+
+    private void SetStateGameOverButtons(){
+        if(_hasNextLevel && _sideWinner.Equals(ArenaSide.Left)){
+            _buttonGameOver_PlayAgain.SetActive(false);
+            _buttonGameOver_NextLevel.SetActive(true);
+        }else{
+            _buttonGameOver_PlayAgain.SetActive(true);
+            _buttonGameOver_NextLevel.SetActive(false);
+        }
+    }
 
     public void Rematch(){
         StartCoroutine(_matchManager.DisableGameOverUI(() => StartMatch()));
@@ -65,7 +107,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void NextLevel(){
-        Debug.Log("Next Level");
+        GameManager.Instance.LoadScene(_nextLevelIndex);
     }
 
     #endregion
