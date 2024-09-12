@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class UI_Manager_Dialogue : UI_AbstractComponent_Manager
 {
@@ -17,5 +18,12 @@ public class UI_Manager_Dialogue : UI_AbstractComponent_Manager
         StartCoroutine(_animationBackground.EndAnimation());
         StartCoroutine(_animationTextContainer.EndAnimation());
         yield return StartCoroutine(_animationCharacterContainer.EndAnimation());
+    }
+
+    public IEnumerator EndAnimation(Action DoLast){
+        StartCoroutine(_animationBackground.EndAnimation());
+        StartCoroutine(_animationTextContainer.EndAnimation());
+        yield return StartCoroutine(_animationCharacterContainer.EndAnimation());
+        DoLast();
     }
 }

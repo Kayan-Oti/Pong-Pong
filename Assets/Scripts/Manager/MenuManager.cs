@@ -55,6 +55,11 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(_animationBox.BackAnimation());
     }
 
+    //--Menu Exit
+    public void OnClick_Exit(){
+        Application.Quit();
+    }
+
     #endregion
 
     #region LevelSelector
