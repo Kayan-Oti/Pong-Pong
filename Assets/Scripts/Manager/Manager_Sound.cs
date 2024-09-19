@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
-public class SoundManager : MonoBehaviour
+public class Manager_Sound : MonoBehaviour
 {
     [SerializeField] private SO_Sounds SO;
-    private static SoundManager instance = null;
+    private static Manager_Sound instance = null;
     private AudioSource audioSource;
 
     private void Awake()

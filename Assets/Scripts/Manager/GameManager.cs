@@ -71,6 +71,6 @@ public class GameManager : MonoBehaviour
 
     private void InvokeOnLoadedScene(){
         Debug.Log("Invoke");
-        EventManager.GameManager.OnLoadedScene.Get().Invoke();
+        Manager_Event.GameManager.OnLoadedScene.Get().Invoke();
     }
 }

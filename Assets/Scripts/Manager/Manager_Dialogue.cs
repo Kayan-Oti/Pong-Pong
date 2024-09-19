@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using MyBox;
 
-public class DialogueManager : MonoBehaviour
+public class Manager_Dialogue : MonoBehaviour
 {
     [SerializeField] private UI_Manager_Dialogue _animationManager;
     [SerializeField] private TextMeshProUGUI _nameText;
@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         _paragraphs.Clear();
         Debug.Log("EndDialogue");
         //Ao terminar a animação Invoke OnEndDialogue Event
-        StartCoroutine(_animationManager.EndAnimation(() => EventManager.DialogueManager.OnEndDialogue.Get().Invoke()));
+        StartCoroutine(_animationManager.EndAnimation(() => Manager_Event.DialogueManager.OnEndDialogue.Get().Invoke()));
     }
 
     [ButtonMethod]

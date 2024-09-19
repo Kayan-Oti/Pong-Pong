@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4d971ed346e742042981d8e636ae2131, type: 2}
     - target: {fileID: 6711068034458115612, guid: 2f9cd6f0654354b48b7b78a409e569f3, type: 3}
       propertyPath: _nextLevelIndex
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6711068034458115612, guid: 2f9cd6f0654354b48b7b78a409e569f3, type: 3}
       propertyPath: _dialogueManager

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchManager : MonoBehaviour
+public class Manager_Match : MonoBehaviour
 {
     [Header("GameObjects")]
     [SerializeField] private Ball _ball;
@@ -21,11 +21,11 @@ public class MatchManager : MonoBehaviour
     private Dictionary<ArenaSide, int> _scoreSides = new Dictionary<ArenaSide, int>();
 
     private void OnEnable() {
-        EventManager.MatchManger.OnScore.Get().AddListener(EndRound);
+        Manager_Event.MatchManger.OnScore.Get().AddListener(EndRound);
     }
 
     private void OnDisable() {
-        EventManager.MatchManger.OnScore.Get().RemoveListener(EndRound);
+        Manager_Event.MatchManger.OnScore.Get().RemoveListener(EndRound);
     }
 
     #region Setup
@@ -53,7 +53,7 @@ public class MatchManager : MonoBehaviour
     }
 
     private IEnumerator StartRound(){
-        EventManager.MatchManger.OnStartRound.Get().Invoke();
+        Manager_Event.MatchManger.OnStartRound.Get().Invoke();
         
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(_countDownManager.StartAnimation());
@@ -63,7 +63,7 @@ public class MatchManager : MonoBehaviour
 
     public void EndRound(ArenaSide side){
         //Fim da Rodada
-        EventManager.MatchManger.OnEndRound.Get().Invoke();
+        Manager_Event.MatchManger.OnEndRound.Get().Invoke();
         StartCoroutine(EndRoundActions(side));
     }
 
@@ -96,7 +96,7 @@ public class MatchManager : MonoBehaviour
     }
 
     private void EndMatch(ArenaSide winnerSide){
-        EventManager.MatchManger.OnEndMatch.Get().Invoke(winnerSide);
+        Manager_Event.MatchManger.OnEndMatch.Get().Invoke(winnerSide);
     }
 
     #endregion

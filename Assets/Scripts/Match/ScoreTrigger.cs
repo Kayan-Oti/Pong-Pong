@@ -6,7 +6,7 @@ public class ScoreTrigger : MonoBehaviour
     [SerializeField] private ArenaSide _sideGettingPoint;
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Ball")){
-            EventManager.MatchManger.OnScore.Get().Invoke(_sideGettingPoint);
+            Manager_Event.MatchManger.OnScore.Get().Invoke(_sideGettingPoint);
         }
     }
 }

@@ -4,11 +4,11 @@ using DG.Tweening;
 using MyBox;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class Manager_Level : MonoBehaviour
 {
     [Header("GameObjects")]
-    [SerializeField] private MatchManager _matchManager;
-    [SerializeField] private DialogueManager _dialogueManager;
+    [SerializeField] private Manager_Match _matchManager;
+    [SerializeField] private Manager_Dialogue _dialogueManager;
     [SerializeField] private GameObject _buttonGameOver_PlayAgain;
     [SerializeField] private GameObject _buttonGameOver_NextLevel;
 
@@ -21,24 +21,22 @@ public class LevelManager : MonoBehaviour
 
     [Header("Values")]
     [SerializeField] private bool _hasNextLevel = false;
-    [ConditionalField(nameof(_hasNextLevel))][SerializeField] private SceneIndex _nextLevelIndex;
+    [ConditionalField(nameof(_hasNextLevel))][SerializeField] private Levels _nextLevelIndex;
     private ArenaSide _sideWinner;
     private bool _startDialogueDone;
     private const float DELAY_TO_START = 0.5f;
 
     #region Unity Setup
     private void OnEnable() {
-        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadedScene);
-        EventManager.MatchManger.OnEndMatch.Get().AddListener(OnEndMatch);
-        EventManager.DialogueManager.OnEndDialogue.Get().AddListener(OnEndDialogue);
-
+        Manager_Event.GameManager.OnLoadedScene.Get().AddListener(OnLoadedScene);
+        Manager_Event.MatchManger.OnEndMatch.Get().AddListener(OnEndMatch);
+        Manager_Event.DialogueManager.OnEndDialogue.Get().AddListener(OnEndDialogue);
     }
 
     private void OnDisable(){
-        EventManager.GameManager.OnLoadedScene.Get().RemoveListener(OnLoadedScene);
-        EventManager.MatchManger.OnEndMatch.Get().RemoveListener(OnEndMatch);
-        EventManager.DialogueManager.OnEndDialogue.Get().RemoveListener(OnEndDialogue);
-
+        Manager_Event.GameManager.OnLoadedScene.Get().RemoveListener(OnLoadedScene);
+        Manager_Event.MatchManger.OnEndMatch.Get().RemoveListener(OnEndMatch);
+        Manager_Event.DialogueManager.OnEndDialogue.Get().RemoveListener(OnEndDialogue);
     }
 
     #endregion
@@ -75,7 +73,18 @@ public class LevelManager : MonoBehaviour
 
     private void OnEndMatch(ArenaSide side){
         _sideWinner = side;
+
+        //If Player Win
+        if(side == ArenaSide.Left){
+            if(_hasNextLevel)
+                UnlockNextLevel();
+        }
+
         EndMatchDialogue();
+    }
+
+    private void UnlockNextLevel(){
+        Manager_DATA.Instance.UnlockLevel(_nextLevelIndex);
     }
 
     #endregion
@@ -107,7 +116,8 @@ public class LevelManager : MonoBehaviour
     }
 
     public void NextLevel(){
-        GameManager.Instance.LoadScene(_nextLevelIndex);
+        SceneIndex sceneIndex = Manager_DATA.DictionaryLevelsToSceneIndex[_nextLevelIndex];
+        GameManager.Instance.LoadScene(sceneIndex);
     }
 
     #endregion
