@@ -3,5 +3,8 @@
 //And make sure that they are in the same order of the Scenes on the Build Settings
 public enum SceneIndex{
     Menu = 1,
-    Level1 = 2
+    Level1,
+    Level2,
+    Level3,
+    Level4
 }

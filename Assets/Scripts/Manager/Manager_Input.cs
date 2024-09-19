@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class Manager_Input : MonoBehaviour
 {
-    public static InputManager Instance;
+    public static Manager_Input Instance;
     public PlayerInputActions playerInputActions {get; private set;}
 
     private void Awake() {

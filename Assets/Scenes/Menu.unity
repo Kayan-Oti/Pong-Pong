@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 148327648}
   - component: {fileID: 148327651}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 148327646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcb491c3b5c8ab4190b91b481913764, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b75395da2cccda44b884e932cbf2d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &234267661
@@ -666,6 +666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 507936115}
   - component: {fileID: 507936116}
+  - component: {fileID: 507936117}
   m_Layer: 5
   m_Name: Container_Maganer_Levels
   m_TagString: Untagged
@@ -722,6 +723,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &507936117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507936114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee99634c468831244b328adc7b2d0adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonsLevel:
+  - {fileID: 148327651}
+  - {fileID: 1053668336}
+  - {fileID: 1582123184}
+  - {fileID: 2133937736}
 --- !u!1 &563910188
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +787,7 @@ MonoBehaviour:
   _animationBox: {fileID: 317989257}
   _animationLevelSelector: {fileID: 1304938432}
   _managerAnimationButtons: {fileID: 1132014905}
+  _levelSelector: {fileID: 507936117}
   _backButton: {fileID: 1053504411}
 --- !u!1 &856364057
 GameObject:
@@ -1092,7 +1111,7 @@ GameObject:
   - component: {fileID: 1053668333}
   - component: {fileID: 1053668336}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1180,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1053668334}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 563910191}
+        m_TargetAssemblyTypeName: Manager_Menu, Assembly-CSharp
+        m_MethodName: EnterLevel2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1053668334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,7 +1240,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053668331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcb491c3b5c8ab4190b91b481913764, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b75395da2cccda44b884e932cbf2d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1132014901
@@ -1945,7 +1976,7 @@ GameObject:
   - component: {fileID: 1582123181}
   - component: {fileID: 1582123184}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2014,7 +2045,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1582123182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 563910191}
+        m_TargetAssemblyTypeName: Manager_Menu, Assembly-CSharp
+        m_MethodName: EnterLevel3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1582123182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,7 +2105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1582123179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcb491c3b5c8ab4190b91b481913764, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b75395da2cccda44b884e932cbf2d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1719438089
@@ -2375,7 +2418,7 @@ GameObject:
   - component: {fileID: 2133937733}
   - component: {fileID: 2133937736}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Level4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2444,7 +2487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2133937734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 563910191}
+        m_TargetAssemblyTypeName: Manager_Menu, Assembly-CSharp
+        m_MethodName: EnterLevel4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2133937734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,7 +2547,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133937731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdcb491c3b5c8ab4190b91b481913764, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b75395da2cccda44b884e932cbf2d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &271363315363812420

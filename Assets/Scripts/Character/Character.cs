@@ -20,14 +20,14 @@ public abstract class Character : MonoBehaviour
 
     #region Unity Setup
     private void OnEnable(){
-        EventManager.MatchManger.OnStartRound.Get().AddListener(StartRoundSetup);
-        EventManager.MatchManger.OnEndRound.Get().AddListener(EndRoundSetup);
+        Manager_Event.MatchManger.OnStartRound.Get().AddListener(StartRoundSetup);
+        Manager_Event.MatchManger.OnEndRound.Get().AddListener(EndRoundSetup);
 
     }
 
     private void OnDisable() {
-        EventManager.MatchManger.OnStartRound.Get().RemoveListener(StartRoundSetup); 
-        EventManager.MatchManger.OnEndRound.Get().RemoveListener(EndRoundSetup);
+        Manager_Event.MatchManger.OnStartRound.Get().RemoveListener(StartRoundSetup); 
+        Manager_Event.MatchManger.OnEndRound.Get().RemoveListener(EndRoundSetup);
     }
 
     private void Start(){

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 public static class Helper
 {
     //Method to easy Add a new EventTrigger
-    public static void AddListener (this EventTrigger trigger, EventTriggerType eventType, System.Action<PointerEventData> listener)
+    public static void AddEventListener (this EventTrigger trigger, EventTriggerType eventType, System.Action<PointerEventData> listener)
 	{
 		EventTrigger.Entry entry = new EventTrigger.Entry();
 		entry.eventID = eventType;

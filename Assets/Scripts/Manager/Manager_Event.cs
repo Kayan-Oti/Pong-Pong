@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public static class EventManager
+public static class Manager_Event
 {
     public static readonly MatchEvents MatchManger = new MatchEvents();
     public static readonly GameEvents GameManager = new GameEvents();
     public static readonly DialogueEvents DialogueManager = new DialogueEvents();
-
-
 
     public class GenericEvent<T> where T: class, new()
     {

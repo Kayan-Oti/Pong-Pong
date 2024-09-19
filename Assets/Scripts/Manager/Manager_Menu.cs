@@ -1,27 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour
+public class Manager_Menu : MonoBehaviour
 {
     [Header("Animations Objects")]
     [SerializeField] private UI_Animation_BoxMenu _animationBox;
     [SerializeField] private UI_AbstractComponent_Animation _animationLevelSelector;
     [SerializeField] private UI_Manager_Buttons _managerAnimationButtons;
+    [SerializeField] private LevelSelector _levelSelector;
+
     [SerializeField] private GameObject _backButton;
 
     [Header("Values")]
     [SerializeField] private const float DELAY_TO_START = 1.0f;
 
     private void OnEnable() {
-        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
+        Manager_Event.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
     }
 
     private void OnDisable() {
-        EventManager.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
+        Manager_Event.GameManager.OnLoadedScene.Get().AddListener(OnLoadScene);
     }
 
-    void Start()
-    {
+    private void Start(){
         SetBackButtonActive(false);
     }
 
@@ -30,6 +31,8 @@ public class MenuManager : MonoBehaviour
     }
 
     private void OnLoadScene(){
+        _levelSelector.EnableUnlockLevels();
+
         StartCoroutine(StartAnimation());
     }
 
@@ -64,17 +67,25 @@ public class MenuManager : MonoBehaviour
 
     #region LevelSelector
 
+    private void DisableAllButtons(){
+        _levelSelector.DisableAllButtons();
+    }
+
     public void EnterLevel1(){
+        DisableAllButtons();
         GameManager.Instance.LoadScene(SceneIndex.Level1);
     }
     public void EnterLevel2(){
-        GameManager.Instance.LoadScene(SceneIndex.Level1);
+        DisableAllButtons();
+        GameManager.Instance.LoadScene(SceneIndex.Level2);
     }
     public void EnterLevel3(){
-        GameManager.Instance.LoadScene(SceneIndex.Level1);
+        DisableAllButtons();
+        GameManager.Instance.LoadScene(SceneIndex.Level3);
     }
     public void EnterLevel4(){
-        GameManager.Instance.LoadScene(SceneIndex.Level1);
+        DisableAllButtons();
+        GameManager.Instance.LoadScene(SceneIndex.Level4);
     }
     
     #endregion
