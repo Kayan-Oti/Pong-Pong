@@ -12,6 +12,12 @@ public class UI_Manager : MonoBehaviour
         [Tooltip("Optional Name")]
         public string name;
         [Space(2)]
+        [Tooltip("Enable Interactable in the End of The animation")]
+        public bool enableInteractable;
+        [Space(2)]
+        [Tooltip("Enable Visibility in the End of The animation")]
+        public bool enableVisibility;
+        [Space(2)]
         [Tooltip("Wait animation to End Before Start Next")]
         public bool waitAnimationEnd;
         [Space(2)]
@@ -42,7 +48,7 @@ public class UI_Manager : MonoBehaviour
         _countCoroutines--;
     }
 
-    public IEnumerator PlayAnimationsByName(string nameFilter, Action DoLast = null)
+    public IEnumerator PlayAnimation(string nameFilter, Action DoLast = null)
     {
         _countCoroutines = 0;
 
@@ -50,9 +56,9 @@ public class UI_Manager : MonoBehaviour
         foreach(Animation animation in animationList.animations)
         {
             if(animation.waitAnimationEnd)
-                yield return animation.target.StartAnimation(animation.SOAnimation, true);
+                yield return animation.target.StartAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility);
             else
-                 StartCoroutine(CountCoroutine(animation.target.StartAnimation(animation.SOAnimation, true)));
+                 StartCoroutine(CountCoroutine(animation.target.StartAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility)));
 
             if(animation.hasDelay)
                 yield return new WaitForSeconds(animation.delaySeconds);

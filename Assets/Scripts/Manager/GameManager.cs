@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GetSceneLoadProgress(SceneIndex scene){
         //Ativa a animação de Loading
-        Debug.Log("Animação Começar a Carregar");
+        Debug.Log("Espera Animação Carregar");
         yield return _loadingScreen.OnStartLoadScene();
 
         //Scene to load
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         _currentSceneIndex = (int)scene;
         _scenesLoading.Add(SceneManager.LoadSceneAsync(_currentSceneIndex, LoadSceneMode.Additive));
 
-        //Espera a animação terminar
+        //Tempo minimo de espera
         yield return new WaitForSeconds(MIN_WAITSECONDS_LOADSCREEN);
 
         //Wait loading
