@@ -16,8 +16,8 @@ MonoBehaviour:
   - name: Level1
     unlock: 1
   - name: Level2
-    unlock: 1
+    unlock: 0
   - name: Level3
-    unlock: 1
+    unlock: 0
   - name: Level4
     unlock: 1

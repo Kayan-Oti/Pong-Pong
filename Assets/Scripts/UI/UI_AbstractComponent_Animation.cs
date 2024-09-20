@@ -23,6 +23,8 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
         SetValues();
         SetComponents();
         SetCanvasGroupState(false);
+        
+        _canvasGroup.alpha = 0f;
     }
 
     public void SetCanvasGroupState(bool state){
@@ -66,6 +68,7 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
         yield return animation.WaitForCompletion();
 
         //After Animation
+        _canvasGroup.alpha = 0f;
     }
 
     public IEnumerator EndAnimation(Action DoLast){
@@ -77,6 +80,7 @@ public abstract class UI_AbstractComponent_Animation : MonoBehaviour
         yield return animation.WaitForCompletion();
 
         //After Animation
+        _canvasGroup.alpha = 0f;
         DoLast();
     }
 

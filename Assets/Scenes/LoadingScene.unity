@@ -650,6 +650,7 @@ GameObject:
   - component: {fileID: 1722024586}
   - component: {fileID: 1722024587}
   - component: {fileID: 1722024588}
+  - component: {fileID: 1722024589}
   m_Layer: 0
   m_Name: Container_Box
   m_TagString: Untagged
@@ -753,6 +754,75 @@ MonoBehaviour:
     m_RotationOrder: 4
   _distanceStart: {x: 0, y: -1500}
   _distanceEnd: {x: 0, y: 1500}
+--- !u!114 &1722024589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722024585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _easeStart:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _easeEnd:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _doTranslation: 1
+  _distanceStart: {x: 0, y: -1500}
+  _distanceEnd: {x: 0, y: 1500}
+  _doRotation: 0
+  _rotationZStart: 0
+  _rotationZEnd: 0
+  _doScale: 0
+  _doFade: 0
 --- !u!1 &1742736630
 GameObject:
   m_ObjectHideFlags: 0
