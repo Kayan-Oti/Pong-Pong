@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeIdle: 0.25
-  _animation1: {fileID: 2030377833802296921}
-  _animation2: {fileID: 3805952850603512264}
+  _animation1: {fileID: 6129815552094538986}
+  _animation2: {fileID: 1138310725089146764}
 --- !u!1 &1140122941805130719
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fim de Jogo
+  m_text: End Match
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 481926572474636146}
   - component: {fileID: 7500915813622982865}
   - component: {fileID: 7386286214730895368}
-  - component: {fileID: 1877789917357143237}
+  - component: {fileID: 1327774145813272823}
   m_Layer: 5
   m_Name: Container_Background
   m_TagString: Untagged
@@ -826,7 +826,7 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1877789917357143237
+--- !u!114 &1327774145813272823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137626143179348006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f701c59540eaa74ab4e1fc39f3accc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 1
@@ -887,6 +887,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _doTranslation: 0
+  _distanceStart: {x: 0, y: 0}
+  _distanceEnd: {x: 0, y: 0}
+  _doRotation: 0
+  _rotationZStart: 0
+  _rotationZEnd: 0
+  _doScale: 0
+  _doFade: 1
 --- !u!1 &2286888854190807221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8266534871423655853}
   - component: {fileID: 4820497201035721690}
-  - component: {fileID: 3805952850603512264}
+  - component: {fileID: 1138310725089146764}
   m_Layer: 5
   m_Name: Container_Text2
   m_TagString: Untagged
@@ -1293,7 +1301,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &3805952850603512264
+--- !u!114 &1138310725089146764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1302,7 +1310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3094470855534061459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
@@ -1354,8 +1362,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _doTranslation: 1
   _distanceStart: {x: 0, y: 200}
   _distanceEnd: {x: 0, y: -200}
+  _doRotation: 0
+  _rotationZStart: 0
+  _rotationZEnd: 0
+  _doScale: 0
+  _doFade: 1
 --- !u!1 &3444619516792803612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,7 +1721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6684330198288826518}
   - component: {fileID: 6606491707111574440}
-  - component: {fileID: 2030377833802296921}
+  - component: {fileID: 6129815552094538986}
   m_Layer: 5
   m_Name: Container_Text1
   m_TagString: Untagged
@@ -1747,7 +1761,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2030377833802296921
+--- !u!114 &6129815552094538986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1756,7 +1770,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5254751298915439203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55480bc661129ad4581bbad5f015bf4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 0.5
@@ -1808,8 +1822,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _doTranslation: 1
   _distanceStart: {x: 0, y: 200}
   _distanceEnd: {x: 0, y: -200}
+  _doRotation: 0
+  _rotationZStart: 0
+  _rotationZEnd: 0
+  _doScale: 0
+  _doFade: 1
 --- !u!1 &5468326399862347903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,7 +2577,7 @@ GameObject:
   - component: {fileID: 2786228511894722350}
   - component: {fileID: 1232254239871699039}
   - component: {fileID: 2575069952778562180}
-  - component: {fileID: 340010829741683386}
+  - component: {fileID: 1205328654643211594}
   m_Layer: 5
   m_Name: Container_Box
   m_TagString: Untagged
@@ -2636,7 +2656,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &340010829741683386
+--- !u!114 &1205328654643211594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2645,7 +2665,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7703044922099916239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b901df539701fe4c80ab2447d3f49ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animationDuration: 1
@@ -2697,8 +2717,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _doTranslation: 1
   _distanceStart: {x: 0, y: 800}
   _distanceEnd: {x: 0, y: -800}
+  _doRotation: 0
+  _rotationZStart: 0
+  _rotationZEnd: 0
+  _doScale: 0
+  _doFade: 0
 --- !u!1 &7782850095943490083
 GameObject:
   m_ObjectHideFlags: 0

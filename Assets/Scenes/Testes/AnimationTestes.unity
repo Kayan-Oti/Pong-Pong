@@ -475,7 +475,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656971003}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI_Manager_Generic, Assembly-CSharp
         m_MethodName: StartAnimationButton
         m_Mode: 1
@@ -648,10 +648,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 656971001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d59942d270a396f42807033d115ab269, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d14078287fe9244cb898271427ca880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listAnimations: []
+  _listAnimations:
+  - name: Start
+    animations:
+    - name: StartLeft
+      waitAnimationEnd: 1
+      hasDelay: 1
+      delaySeconds: 0.5
+      target: {fileID: 1185259537}
+      SOAnimation: {fileID: 11400000, guid: ae72c43b6d72e4549a6850779feb1e17, type: 2}
+    - name: EndLeft
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 1185259537}
+      SOAnimation: {fileID: 11400000, guid: 86c30cc82fdce244b833288420920abd, type: 2}
+    - name: StartRight
+      waitAnimationEnd: 1
+      hasDelay: 1
+      delaySeconds: 0.5
+      target: {fileID: 2052440416}
+      SOAnimation: {fileID: 11400000, guid: ae72c43b6d72e4549a6850779feb1e17, type: 2}
+    - name: EndRight
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 2052440416}
+      SOAnimation: {fileID: 11400000, guid: 86c30cc82fdce244b833288420920abd, type: 2}
+  - name: End
+    animations:
+    - name: 
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 1185259537}
+      SOAnimation: {fileID: 11400000, guid: ae72c43b6d72e4549a6850779feb1e17, type: 2}
+    - name: 
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 2052440416}
+      SOAnimation: {fileID: 11400000, guid: ae72c43b6d72e4549a6850779feb1e17, type: 2}
 --- !u!1 &687258508
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +776,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656971003}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI_Manager_Generic, Assembly-CSharp
         m_MethodName: EndAnimationButton
         m_Mode: 1
@@ -902,7 +942,7 @@ GameObject:
   - component: {fileID: 1185259532}
   - component: {fileID: 1185259531}
   - component: {fileID: 1185259534}
-  - component: {fileID: 1185259535}
+  - component: {fileID: 1185259537}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -980,7 +1020,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1185259535
+--- !u!114 &1185259537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -989,66 +1029,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185259529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
+  m_Script: {fileID: 11500000, guid: b40fc77504d6c0f44b25dcad02ee6866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationDuration: 1
-  _easeStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _easeEnd:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _doTranslation: 1
-  _distanceStart: {x: 0, y: 300}
-  _distanceEnd: {x: 0, y: -300}
-  _doRotation: 0
-  _rotationZStart: 180
-  _rotationZEnd: -180
-  _doScale: 0
-  _doFade: 0
 --- !u!1 &1232352285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,66 +1436,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052440410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c3b576c2e906d48ac75c1a9381e2f8, type: 3}
+  m_Script: {fileID: 11500000, guid: b40fc77504d6c0f44b25dcad02ee6866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationDuration: 1
-  _easeStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _easeEnd:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _doTranslation: 1
-  _distanceStart: {x: 0, y: 300}
-  _distanceEnd: {x: 0, y: -300}
-  _doRotation: 0
-  _rotationZStart: 0
-  _rotationZEnd: 0
-  _doScale: 0
-  _doFade: 0
 --- !u!1 &2123712119
 GameObject:
   m_ObjectHideFlags: 0

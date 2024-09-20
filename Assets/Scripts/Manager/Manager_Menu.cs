@@ -39,7 +39,7 @@ public class Manager_Menu : MonoBehaviour
     private IEnumerator StartAnimation(){
         yield return new WaitForSeconds(DELAY_TO_START);
         yield return StartCoroutine(_animationBox.StartAnimation());
-        yield return StartCoroutine(_managerAnimationButtons.StartAnimation());
+        StartCoroutine(_managerAnimationButtons.StartAnimation());
     }
 
     #region Onclick

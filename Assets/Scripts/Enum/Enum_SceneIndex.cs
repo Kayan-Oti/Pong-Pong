@@ -6,5 +6,6 @@ public enum SceneIndex{
     Level1,
     Level2,
     Level3,
-    Level4
+    Level4,
+    FinalScene
 }

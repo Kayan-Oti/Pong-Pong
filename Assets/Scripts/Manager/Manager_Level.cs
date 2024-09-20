@@ -20,8 +20,8 @@ public class Manager_Level : MonoBehaviour
     [SerializeField] private SO_Dialogue _dialogueLose;
 
     [Header("Values")]
-    [SerializeField] private bool _hasNextLevel = false;
-    [ConditionalField(nameof(_hasNextLevel))][SerializeField] private Levels _nextLevelIndex;
+    [SerializeField] private bool _isFinalLevel = false;
+    [ConditionalField(nameof(_isFinalLevel), true)][SerializeField] private Levels _nextLevelIndex;
     private ArenaSide _sideWinner;
     private bool _startDialogueDone;
     private const float DELAY_TO_START = 0.5f;
@@ -52,16 +52,23 @@ public class Manager_Level : MonoBehaviour
     }
 
     private void EndMatchDialogue(){
-        _dialogueManager.StartDialogue(_sideWinner.Equals(ArenaSide.Left)?_dialogueWin : _dialogueLose);
+        _dialogueManager.StartDialogue(HasPlayerWin()?_dialogueWin : _dialogueLose);
     }
 
     private void OnEndDialogue(){
+        //Dialogue before match end
         if(!_startDialogueDone){
             _startDialogueDone = true;
             StartMatch();
-        }else{
-            EnableGameOverUI();
+            return;
         }
+        //Final Level
+        if(_isFinalLevel && HasPlayerWin()){
+            OnWinTournament();
+            return;
+        }
+
+        EnableGameOverUI();
     }
 
     #endregion
@@ -74,17 +81,23 @@ public class Manager_Level : MonoBehaviour
     private void OnEndMatch(ArenaSide side){
         _sideWinner = side;
 
-        //If Player Win
-        if(side == ArenaSide.Left){
-            if(_hasNextLevel)
-                UnlockNextLevel();
-        }
+        //If Player Win and have another Level
+        if(HasPlayerWin() && !_isFinalLevel)
+            UnlockNextLevel();
 
         EndMatchDialogue();
     }
 
     private void UnlockNextLevel(){
         Manager_DATA.Instance.UnlockLevel(_nextLevelIndex);
+    }
+
+    private void OnWinTournament(){
+        GameManager.Instance.LoadScene(SceneIndex.FinalScene);
+    }
+
+    private bool HasPlayerWin(){
+        return _sideWinner.Equals(ArenaSide.Left);
     }
 
     #endregion
@@ -97,7 +110,7 @@ public class Manager_Level : MonoBehaviour
     }
 
     private void SetStateGameOverButtons(){
-        if(_hasNextLevel && _sideWinner.Equals(ArenaSide.Left)){
+        if(HasPlayerWin()){
             _buttonGameOver_PlayAgain.SetActive(false);
             _buttonGameOver_NextLevel.SetActive(true);
         }else{

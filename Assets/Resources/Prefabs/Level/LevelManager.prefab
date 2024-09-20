@@ -46,3 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _matchManager: {fileID: 0}
   _dialogueManager: {fileID: 0}
+  _buttonGameOver_PlayAgain: {fileID: 0}
+  _buttonGameOver_NextLevel: {fileID: 0}
+  _dialogueStart: {fileID: 11400000, guid: 4d971ed346e742042981d8e636ae2131, type: 2}
+  _dialogueWin: {fileID: 11400000, guid: 4fb93a00687de8f46bf73913b0875b2c, type: 2}
+  _dialogueLose: {fileID: 11400000, guid: e6dd565dcd3bbb94cb29300fc7e7f105, type: 2}
+  _isFinalLevel: 0
+  _nextLevelIndex: 1

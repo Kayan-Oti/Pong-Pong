@@ -42,6 +42,7 @@ public class UI_Animation_BoxMenu : UI_AbstractComponent_Animation_Position
     public IEnumerator BackAnimation()
     {
         //Before Animation
+        _canvasGroup.alpha = 1f;
 
         //Animation
         //Deslocamento simples, voltando ao ponto inicial

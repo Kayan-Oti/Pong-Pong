@@ -43,8 +43,6 @@ public class UI_Animation_General : UI_AbstractComponent_Animation
             _startPos = _defaultPos + _distanceStart;
             _endPos = _defaultPos + _distanceEnd;
             _rectTransform.localPosition = (Vector3)_startPos;
-        }else{
-            _rectTransform.localPosition = _defaultPos;
         }
         
         //Start Rotation
@@ -52,8 +50,6 @@ public class UI_Animation_General : UI_AbstractComponent_Animation
             _startRotationZ = _defaultRotationZ + _rotationZStart;
             _endRotationZ = _defaultRotationZ + _rotationZEnd;
             _rectTransform.rotation = Quaternion.Euler(0,0, _startRotationZ);
-        }else{
-            _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ);
         }
 
         //Start Fade
