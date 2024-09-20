@@ -30,7 +30,7 @@ public struct AnimationStruct
     [ConditionalField(nameof(DoFade))][SerializeField] public AnimationStyle StyleFade;
 }
 
- [CreateAssetMenu(menuName = "DATA/SO Animation", fileName = "new Animation")]
+ [CreateAssetMenu(menuName = "DATA/SO Animation", fileName = "Animation_")]
 public class SO_Animation : ScriptableObject
 {
     public float _animationDuration;

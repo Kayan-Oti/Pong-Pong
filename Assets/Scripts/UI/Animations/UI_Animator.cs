@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class UI_Animator : UI_Abstract_Animation
+public class UI_Animator : UI_Abstract_Animator
 {
     //Translation
     private Vector2 _defaultPos;
@@ -38,6 +38,8 @@ public class UI_Animator : UI_Abstract_Animation
                     _rectTransform.localPosition = (Vector3)_defaultPos;
                 break;
             }
+        }else{
+            _rectTransform.anchoredPosition = _defaultPos;
         }
         
         //Start Rotation
@@ -53,6 +55,8 @@ public class UI_Animator : UI_Abstract_Animation
                     _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ);
                 break;
             }
+        }else{
+            _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ);
         }
 
         //Start Fade
@@ -67,11 +71,13 @@ public class UI_Animator : UI_Abstract_Animation
                     _canvasGroup.alpha = 1f;
                 break;
             }
+        }else{
+            _canvasGroup.alpha = 1f;
         }
 
         //Start Scale
-        if(_animation.DoFade){
-            switch(_animation.StyleFade){
+        if(_animation.DoScale){
+            switch(_animation.StyleScale){
                 case AnimationStyle.Appearing:
                     _targetScale = Vector2.one;
                     _rectTransform.localScale = Vector2.zero;
@@ -81,6 +87,8 @@ public class UI_Animator : UI_Abstract_Animation
                     _rectTransform.localScale = Vector2.one;
                 break;
             }
+        }else{
+            _rectTransform.localScale = Vector2.one;
         }
     }
 

@@ -4,9 +4,7 @@ using UnityEngine;
 public class Manager_Menu : MonoBehaviour
 {
     [Header("Animations Objects")]
-    [SerializeField] private UI_Animation_BoxMenu _animationBox;
-    [SerializeField] private UI_AbstractComponent_Animation _animationLevelSelector;
-    [SerializeField] private UI_Manager_Buttons _managerAnimationButtons;
+    [SerializeField] private UI_Manager _managerMainBox;
     [SerializeField] private LevelSelector _levelSelector;
 
     [SerializeField] private GameObject _backButton;
@@ -38,24 +36,20 @@ public class Manager_Menu : MonoBehaviour
 
     private IEnumerator StartAnimation(){
         yield return new WaitForSeconds(DELAY_TO_START);
-        yield return StartCoroutine(_animationBox.StartAnimation());
-        StartCoroutine(_managerAnimationButtons.StartAnimation());
+        StartCoroutine(_managerMainBox.PlayAnimation("Start"));
     }
 
     #region Onclick
     
     //--Menu Play
     public void OnClick_Play(){
-        StartCoroutine(_animationBox.EndAnimation());
-        StartCoroutine(_animationLevelSelector.StartAnimation(()=> SetBackButtonActive(true)));
+        StartCoroutine(_managerMainBox.PlayAnimation("End", () => SetBackButtonActive(true)));
     }
 
     //--Menu Back
     public void OnClick_Back(){
         SetBackButtonActive(false);
-
-        StartCoroutine(_animationLevelSelector.EndAnimation());
-        StartCoroutine(_animationBox.BackAnimation());
+        StartCoroutine(_managerMainBox.PlayAnimation("Back"));
     }
 
     //--Menu Exit

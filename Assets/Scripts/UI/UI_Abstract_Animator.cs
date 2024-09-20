@@ -6,8 +6,11 @@ using System;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
-public abstract class UI_Abstract_Animation : MonoBehaviour
+public abstract class UI_Abstract_Animator : MonoBehaviour
 {
+    [SerializeField] protected bool _startInteractable;
+    [SerializeField] protected bool _startVisibility;
+
     protected AnimationStruct _animation;
     protected float _animationDuration;
     protected AnimationCurve _ease;
@@ -29,28 +32,35 @@ public abstract class UI_Abstract_Animation : MonoBehaviour
         _canvasGroup = GetComponent<CanvasGroup>();
 
         SetValues();
-        SetComponents();
-        SetCanvasGroupState(false);
+        SetInteractable(_startInteractable);
+        SetVisibility(_startVisibility);
     }
 
-    public void SetCanvasGroupState(bool state){
+    public void SetInteractable(bool state){
         _canvasGroup.interactable = state;
         _canvasGroup.blocksRaycasts = state;
     }
 
-    public IEnumerator StartAnimation(SO_Animation animationSO, bool enableInteractable, Action DoLast = null){
+    public void SetVisibility(bool state){
+        _canvasGroup.alpha = state ? 1f : 0f;
+    }
+
+    public IEnumerator StartAnimation(SO_Animation animationSO, bool enableInteractable, bool enableVisibility, Action DoLast = null){
         ConvertSO(animationSO);
 
         //Before animation
+        SetInteractable(false);
+        SetVisibility(false);
         SetComponents();
-        SetCanvasGroupState(false);
 
         //Animation
         Tween animation = GetTween();
         yield return animation.WaitForCompletion();
 
         //After Animation
-        SetCanvasGroupState(enableInteractable);
+        SetInteractable(enableInteractable);
+        SetVisibility(enableVisibility);
+        
         DoLast?.Invoke();
     }
 

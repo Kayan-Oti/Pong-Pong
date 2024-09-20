@@ -7,11 +7,11 @@ public class UI_Manager_Teste : UI_Manager
 {
     [ButtonMethod]
     public void PlayAnimationFilterStartButton(){
-        StartCoroutine(PlayAnimationsByName("Start"));
+        StartCoroutine(PlayAnimation("Start"));
     }
 
     [ButtonMethod]
     public void PlayAnimationFilterEndButton(){
-        StartCoroutine(PlayAnimationsByName("End", () => Debug.Log("DoLast")));
+        StartCoroutine(PlayAnimation("End", () => Debug.Log("DoLast")));
     }
 }
