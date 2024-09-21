@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LoadingScreen : MonoBehaviour
 {
-    [SerializeField] private UI_Manager _animation;
+    [SerializeField] private UI_ManagerAnimation _animation;
 
     public Coroutine OnStartLoadScene(){
         return StartCoroutine(AnimationOnStartLoading());

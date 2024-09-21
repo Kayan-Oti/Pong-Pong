@@ -6,7 +6,7 @@ using MyBox;
 
 public class Manager_Dialogue : MonoBehaviour
 {
-    [SerializeField] private UI_Manager_Dialogue _animationManager;
+    [SerializeField] private UI_ManagerAnimation _animationManager;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private float typeSpeed = 1;
@@ -36,7 +36,7 @@ public class Manager_Dialogue : MonoBehaviour
         ResetText();
         
         //Wait Animation End
-        yield return StartCoroutine(_animationManager.StartAnimation());
+        yield return StartCoroutine(_animationManager.PlayAnimation("Start"));
         
         //Display name
         _nameText.text = _dialogue.Name;
@@ -53,7 +53,7 @@ public class Manager_Dialogue : MonoBehaviour
         _paragraphs.Clear();
         Debug.Log("EndDialogue");
         //Ao terminar a animação Invoke OnEndDialogue Event
-        StartCoroutine(_animationManager.EndAnimation(() => Manager_Event.DialogueManager.OnEndDialogue.Get().Invoke()));
+        StartCoroutine(_animationManager.PlayAnimation("End",() => Manager_Event.DialogueManager.OnEndDialogue.Get().Invoke()));
     }
 
     [ButtonMethod]

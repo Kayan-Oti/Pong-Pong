@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyBox;
 
-public class UI_Manager_Teste : UI_Manager
+public class UI_ManagerAnimation_Teste : UI_ManagerAnimation
 {
     [ButtonMethod]
     public void PlayAnimationFilterStartButton(){

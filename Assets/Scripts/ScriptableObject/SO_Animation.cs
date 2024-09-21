@@ -33,7 +33,7 @@ public struct AnimationStruct
  [CreateAssetMenu(menuName = "DATA/SO Animation", fileName = "Animation_")]
 public class SO_Animation : ScriptableObject
 {
-    public float _animationDuration;
+    public float _animationDuration = 1;
     public AnimationCurve _ease;
     public AnimationStruct animation;
 }

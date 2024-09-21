@@ -5,7 +5,7 @@ using MyBox;
 using System.Linq;
 using System;
 
-public class UI_Manager : MonoBehaviour
+public class UI_ManagerAnimation : MonoBehaviour
 {
     [Serializable]
     public struct Animation{

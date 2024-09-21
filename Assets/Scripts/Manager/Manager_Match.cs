@@ -11,9 +11,7 @@ public class Manager_Match : MonoBehaviour
     [SerializeField] private Animation_CameraShake _cameraShake;
 
     [Header("UI Managers")]
-    [SerializeField] private UI_Manager_CountDown _countDownManager;
-    [SerializeField] private UI_Manager_GameOver _gameOverManager;
-
+    [SerializeField] private UI_ManagerAnimation _managerAnimation;
     [Header("Values")]
     [SerializeField] private float _scoreToWin = 7;
 
@@ -56,7 +54,7 @@ public class Manager_Match : MonoBehaviour
         Manager_Event.MatchManger.OnStartRound.Get().Invoke();
         
         yield return new WaitForSeconds(0.25f);
-        yield return StartCoroutine(_countDownManager.StartAnimation());
+        yield return StartCoroutine(_managerAnimation.PlayAnimation("CountDown"));
 
         _ball.AddStartingForce();
     }
@@ -102,11 +100,11 @@ public class Manager_Match : MonoBehaviour
     #endregion
 
     public IEnumerator EnableGameOverUI(){
-        yield return StartCoroutine(_gameOverManager.StartAnimation());
+        yield return StartCoroutine(_managerAnimation.PlayAnimation("GameOver_Start"));
     }
 
     public IEnumerator DisableGameOverUI(Action DoLast){
-        yield return StartCoroutine(_gameOverManager.EndAnimation());
+        yield return StartCoroutine(_managerAnimation.PlayAnimation("GameOver_End"));
         DoLast();
     }
 
