@@ -4,7 +4,7 @@ using UnityEngine;
 public class Manager_Menu : MonoBehaviour
 {
     [Header("Animations Objects")]
-    [SerializeField] private UI_Manager _managerMainBox;
+    [SerializeField] private UI_ManagerAnimation _managerMainBox;
     [SerializeField] private LevelSelector _levelSelector;
 
     [SerializeField] private GameObject _backButton;
