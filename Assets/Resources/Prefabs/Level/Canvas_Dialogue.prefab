@@ -168,7 +168,6 @@ RectTransform:
   m_Children:
   - {fileID: 8425160731008481822}
   - {fileID: 4904215539703627710}
-  - {fileID: 1433576084729891157}
   m_Father: {fileID: 6425680269123988928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -349,6 +348,7 @@ GameObject:
   - component: {fileID: 3504760278826686291}
   - component: {fileID: 3430936882491173876}
   - component: {fileID: 352277712275956470}
+  - component: {fileID: 2118837097354366217}
   m_Layer: 5
   m_Name: Canvas_Dialogue
   m_TagString: Untagged
@@ -371,6 +371,7 @@ RectTransform:
   - {fileID: 2937064009970840679}
   - {fileID: 3405235294029825286}
   - {fileID: 9039180223444240443}
+  - {fileID: 1433576084729891157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -441,6 +442,71 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2118837097354366217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164815127419034901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63179c06a5d5c74faa41c1e026830be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listAnimations:
+  - name: Start
+    animations:
+    - name: Background
+      enableInteractable: 1
+      enableVisibility: 1
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 1533175182951814654}
+      SOAnimation: {fileID: 11400000, guid: e0139894618bdeb4cad440cc94169ed1, type: 2}
+    - name: Character
+      enableInteractable: 0
+      enableVisibility: 1
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 5631776870444963471}
+      SOAnimation: {fileID: 11400000, guid: 37ce5723f699eb941bf9278b7e18ac0e, type: 2}
+    - name: Container
+      enableInteractable: 1
+      enableVisibility: 1
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 404726291255678012}
+      SOAnimation: {fileID: 11400000, guid: 9c5142f011458b6438995ed39920276e, type: 2}
+  - name: End
+    animations:
+    - name: Background
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 1533175182951814654}
+      SOAnimation: {fileID: 11400000, guid: 9fb27f19976d71e49a952d88e75b8674, type: 2}
+    - name: Character
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 5631776870444963471}
+      SOAnimation: {fileID: 11400000, guid: 043ab712bdf2d7543992335ccc8b7a6a, type: 2}
+    - name: Container
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 404726291255678012}
+      SOAnimation: {fileID: 11400000, guid: 21976071a51784b43a27719ba1a5ec11, type: 2}
 --- !u!1 &3687437606357557823
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +520,7 @@ GameObject:
   - component: {fileID: 7988942545413359813}
   - component: {fileID: 7149824521081933786}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,12 +533,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3687437606357557823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9039180223444240443}
+  m_Father: {fileID: 6425680269123988928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -557,13 +623,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7988942545413359813}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Manager_Dialogue, Assembly-CSharp
-        m_MethodName: DisplayNextParagraph
+        m_MethodName: Onclick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

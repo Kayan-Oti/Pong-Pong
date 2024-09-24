@@ -27,14 +27,14 @@ public class UI_Animator : UI_Abstract_Animator
 
     public override void SetComponents(){
         //Start Position
-        if(_animation.DoTranslation){
-            switch(_animation.StylePosition){
+        if(_animationStruct.DoTranslation){
+            switch(_animationStruct.StylePosition){
                 case AnimationStyle.Appearing:
                     _targetPosition = _defaultPos;
-                    _rectTransform.localPosition = (Vector3)(_defaultPos + _animation.Distance);
+                    _rectTransform.localPosition = (Vector3)(_defaultPos + _animationStruct.Distance);
                 break;
                 case AnimationStyle.Leaving:
-                    _targetPosition = _defaultPos + _animation.Distance;
+                    _targetPosition = _defaultPos + _animationStruct.Distance;
                     _rectTransform.localPosition = (Vector3)_defaultPos;
                 break;
             }
@@ -43,15 +43,15 @@ public class UI_Animator : UI_Abstract_Animator
         }
         
         //Start Rotation
-        if(_animation.DoRotation){
-            switch(_animation.StyleRotation){
+        if(_animationStruct.DoRotation){
+            switch(_animationStruct.StyleRotation){
                 case AnimationStyle.Appearing:
                     _targetRotationZ = _defaultRotationZ;
-                    _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ + _animation.RotationZ);
+                    _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ + _animationStruct.RotationZ);
 
                 break;
                 case AnimationStyle.Leaving:
-                    _targetRotationZ = _defaultRotationZ + _animation.RotationZ;
+                    _targetRotationZ = _defaultRotationZ + _animationStruct.RotationZ;
                     _rectTransform.rotation = Quaternion.Euler(0,0, _defaultRotationZ);
                 break;
             }
@@ -60,8 +60,8 @@ public class UI_Animator : UI_Abstract_Animator
         }
 
         //Start Fade
-        if(_animation.DoFade){
-            switch(_animation.StyleFade){
+        if(_animationStruct.DoFade){
+            switch(_animationStruct.StyleFade){
                 case AnimationStyle.Appearing:
                     _targetFade = 1f;
                     _canvasGroup.alpha = 0f;
@@ -76,8 +76,8 @@ public class UI_Animator : UI_Abstract_Animator
         }
 
         //Start Scale
-        if(_animation.DoScale){
-            switch(_animation.StyleScale){
+        if(_animationStruct.DoScale){
+            switch(_animationStruct.StyleScale){
                 case AnimationStyle.Appearing:
                     _targetScale = Vector2.one;
                     _rectTransform.localScale = Vector2.zero;
@@ -96,17 +96,17 @@ public class UI_Animator : UI_Abstract_Animator
     {
         Sequence animation = DOTween.Sequence();
 
-        if(_animation.DoTranslation)
-            animation.Insert(0,_rectTransform.DOAnchorPos(_targetPosition, _animationDuration).SetEase(_ease));
+        if(_animationStruct.DoTranslation)
+            animation.Insert(0,_rectTransform.DOAnchorPos(_targetPosition, _duration).SetEase(_ease));
 
-        if(_animation.DoRotation)
-            animation.Insert(0,_rectTransform.DORotate(new Vector3(0,0,_targetRotationZ), _animationDuration).SetEase(_ease));
+        if(_animationStruct.DoRotation)
+            animation.Insert(0,_rectTransform.DORotate(new Vector3(0,0,_targetRotationZ), _duration).SetEase(_ease));
 
-        if(_animation.DoFade)
-            animation.Insert(0,_canvasGroup.DOFade(_targetFade, _animationDuration).SetEase(_ease));
+        if(_animationStruct.DoFade)
+            animation.Insert(0,_canvasGroup.DOFade(_targetFade, _duration).SetEase(_ease));
 
-        if(_animation.DoScale)
-            animation.Insert(0,_rectTransform.DOScale(_targetScale, _animationDuration).SetEase(_ease));
+        if(_animationStruct.DoScale)
+            animation.Insert(0,_rectTransform.DOScale(_targetScale, _duration).SetEase(_ease));
 
         return animation;
     }

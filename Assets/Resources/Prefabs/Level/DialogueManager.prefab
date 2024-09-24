@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4610545806786527059}
   - component: {fileID: 2244845077861289099}
-  - component: {fileID: 7382785446719914592}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -45,72 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf849ade57c85ff4eb4994b9e9b00dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationManager: {fileID: 7382785446719914592}
+  _animationManager: {fileID: 0}
   _nameText: {fileID: 0}
   _dialogueText: {fileID: 0}
+  _button: {fileID: 0}
   typeSpeed: 15
---- !u!114 &7382785446719914592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9080799812448219315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b63179c06a5d5c74faa41c1e026830be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _listAnimations:
-  - name: Start
-    animations:
-    - name: Background
-      enableInteractable: 1
-      enableVisibility: 1
-      waitAnimationEnd: 0
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: e0139894618bdeb4cad440cc94169ed1, type: 2}
-    - name: Character
-      enableInteractable: 0
-      enableVisibility: 1
-      waitAnimationEnd: 1
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: 37ce5723f699eb941bf9278b7e18ac0e, type: 2}
-    - name: Container
-      enableInteractable: 1
-      enableVisibility: 1
-      waitAnimationEnd: 1
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: 9c5142f011458b6438995ed39920276e, type: 2}
-  - name: End
-    animations:
-    - name: Background
-      enableInteractable: 0
-      enableVisibility: 0
-      waitAnimationEnd: 0
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: 9fb27f19976d71e49a952d88e75b8674, type: 2}
-    - name: Character
-      enableInteractable: 0
-      enableVisibility: 0
-      waitAnimationEnd: 0
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: 043ab712bdf2d7543992335ccc8b7a6a, type: 2}
-    - name: Container
-      enableInteractable: 0
-      enableVisibility: 0
-      waitAnimationEnd: 0
-      hasDelay: 0
-      delaySeconds: 0
-      target: {fileID: 0}
-      SOAnimation: {fileID: 11400000, guid: 21976071a51784b43a27719ba1a5ec11, type: 2}

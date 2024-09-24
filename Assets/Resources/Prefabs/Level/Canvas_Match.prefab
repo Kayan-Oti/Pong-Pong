@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 2523130493752277961}
   - component: {fileID: 972947270500000680}
   - component: {fileID: 524524663939763829}
+  - component: {fileID: 8555308247619692377}
   m_Layer: 5
   m_Name: Canvas_Match
   m_TagString: Untagged
@@ -721,6 +722,89 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8555308247619692377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774536127562164142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63179c06a5d5c74faa41c1e026830be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _listAnimations:
+  - name: CountDown
+    animations:
+    - name: ReadyApperaing
+      enableInteractable: 0
+      enableVisibility: 1
+      waitAnimationEnd: 1
+      hasDelay: 1
+      delaySeconds: 0.25
+      target: {fileID: 3999406384717138997}
+      SOAnimation: {fileID: 11400000, guid: 7535d438f5717794c8d1f41e5cd5057b, type: 2}
+    - name: ReadyLeaving
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0.25
+      target: {fileID: 3999406384717138997}
+      SOAnimation: {fileID: 11400000, guid: e23923d883809234e9ce87f8858ff997, type: 2}
+    - name: GoAppearing
+      enableInteractable: 0
+      enableVisibility: 1
+      waitAnimationEnd: 1
+      hasDelay: 1
+      delaySeconds: 0.25
+      target: {fileID: 8600139620429143302}
+      SOAnimation: {fileID: 11400000, guid: 7535d438f5717794c8d1f41e5cd5057b, type: 2}
+    - name: GoLeaving
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0.25
+      target: {fileID: 8600139620429143302}
+      SOAnimation: {fileID: 11400000, guid: e23923d883809234e9ce87f8858ff997, type: 2}
+  - name: GameOver_Start
+    animations:
+    - name: Background
+      enableInteractable: 0
+      enableVisibility: 1
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 7220553110900881755}
+      SOAnimation: {fileID: 11400000, guid: 30a8e877ad8f6df4892416e3d4bad4a0, type: 2}
+    - name: Box
+      enableInteractable: 1
+      enableVisibility: 1
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 6943932284300584383}
+      SOAnimation: {fileID: 11400000, guid: cfa65d7c0b6c77f4b8070870cc776e3c, type: 2}
+  - name: GameOver_End
+    animations:
+    - name: Background
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 0
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 7220553110900881755}
+      SOAnimation: {fileID: 11400000, guid: 4f488a9160864394fa13414c814b544e, type: 2}
+    - name: Box
+      enableInteractable: 0
+      enableVisibility: 0
+      waitAnimationEnd: 1
+      hasDelay: 0
+      delaySeconds: 0
+      target: {fileID: 6943932284300584383}
+      SOAnimation: {fileID: 11400000, guid: 3c5331e7a6d390a46b39e4f689574ae8, type: 2}
 --- !u!1 &2137626143179348006
 GameObject:
   m_ObjectHideFlags: 0
