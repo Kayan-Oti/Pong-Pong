@@ -107,5 +107,4 @@ public class Manager_Match : MonoBehaviour
         yield return StartCoroutine(_managerAnimation.PlayAnimation("GameOver_End"));
         DoLast();
     }
-
 }

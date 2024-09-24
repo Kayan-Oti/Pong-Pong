@@ -11,8 +11,9 @@ public abstract class UI_Abstract_Animator : MonoBehaviour
     [SerializeField] protected bool _startInteractable;
     [SerializeField] protected bool _startVisibility;
 
-    protected AnimationStruct _animation;
-    protected float _animationDuration;
+    protected Tween _animationTween;
+    protected AnimationStruct _animationStruct;
+    protected float _duration;
     protected AnimationCurve _ease;
     protected CanvasGroup _canvasGroup;
     protected RectTransform _rectTransform;
@@ -54,8 +55,27 @@ public abstract class UI_Abstract_Animator : MonoBehaviour
         SetComponents();
 
         //Animation
-        Tween animation = GetTween();
-        yield return animation.WaitForCompletion();
+        _animationTween = GetTween();
+        yield return _animationTween.WaitForCompletion();
+
+        //After Animation
+        SetInteractable(enableInteractable);
+        SetVisibility(enableVisibility);
+        
+        DoLast?.Invoke();
+    }
+
+    public void SkipAnimation(SO_Animation animationSO, bool enableInteractable, bool enableVisibility, Action DoLast = null){
+        ConvertSO(animationSO);
+
+        //Before animation
+        SetInteractable(false);
+        SetVisibility(false);
+        SetComponents();
+
+        //Animation
+        _animationTween = GetTween();
+        _animationTween.Complete();
 
         //After Animation
         SetInteractable(enableInteractable);
@@ -65,8 +85,14 @@ public abstract class UI_Abstract_Animator : MonoBehaviour
     }
 
     public void ConvertSO(SO_Animation soAnimation){
-        _animationDuration = soAnimation._animationDuration;
+        _duration = soAnimation._animationDuration;
         _ease = soAnimation._ease;
-        _animation = soAnimation.animation;
+        _animationStruct = soAnimation.animation;
+    }
+
+    public void CompleteAnimation(){
+        if(_animationTween.IsActive()){
+            _animationTween.Complete();
+        }
     }
 }

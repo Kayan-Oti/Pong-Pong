@@ -14,4 +14,9 @@ public class UI_ManagerAnimation_Teste : UI_ManagerAnimation
     public void PlayAnimationFilterEndButton(){
         StartCoroutine(PlayAnimation("End", () => Debug.Log("DoLast")));
     }
+
+    [ButtonMethod]
+    public void SkipAnimationStart(){
+        SkipAnimation("Start");
+    }
 }

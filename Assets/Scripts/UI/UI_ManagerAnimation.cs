@@ -40,8 +40,15 @@ public class UI_ManagerAnimation : MonoBehaviour
     }
 
     [SerializeField] private List<AnimationsList> _listAnimations = new List<AnimationsList>();
+    /// <summary>
+    /// Dictionay of Currents Animation
+    /// </summary>
+    private Dictionary<string, bool> _animationActivity = new Dictionary<string, bool>();
     private int _countCoroutines;
 
+    /// <summary>
+    /// Used to Count Coroutines that don't need to WaitToEnd
+    /// </summary>
     private IEnumerator CountCoroutine(IEnumerator animation){
         _countCoroutines++;
         yield return StartCoroutine(animation);
@@ -50,18 +57,33 @@ public class UI_ManagerAnimation : MonoBehaviour
 
     public IEnumerator PlayAnimation(string nameFilter, Action DoLast = null)
     {
-        _countCoroutines = 0;
+        //Creates or Check is animation can be Active
+        if(!ActiveAnimation(nameFilter))
+            yield break;
 
-        AnimationsList animationList = _listAnimations.First(x => x.name == nameFilter);
-        foreach(Animation animation in animationList.animations)
+        //Values
+        _countCoroutines = 0;
+        AnimationsList animationsList = GetAnimationListByName(nameFilter);
+
+        //Loop
+        foreach(Animation animation in animationsList.animations)
         {
+            //Exception: Skip further animation
+            if(!_animationActivity[nameFilter]){
+                animation.target.SkipAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility);
+                continue;
+            }
+            //Play Animation, WaitingEnd or Not
             if(animation.waitAnimationEnd)
                 yield return animation.target.StartAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility);
             else
                  StartCoroutine(CountCoroutine(animation.target.StartAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility)));
-
-            if(animation.hasDelay)
-                yield return new WaitForSeconds(animation.delaySeconds);
+            
+            //Delay before next
+            //Check if is Active, because it can be skipped while is WaitingEnd Animation
+            if(animation.hasDelay){
+                yield return DelayAnimation(animation, nameFilter);
+            }
         }
         
         //Wait all animations to End
@@ -69,6 +91,72 @@ public class UI_ManagerAnimation : MonoBehaviour
             yield return null;
 
         //Do After Animations End
+        _animationActivity[nameFilter] = false; // Desactive Animation
         DoLast?.Invoke();
+    }
+
+    /// <summary>
+    /// Alternative version of a WaitForSeconds, that can be break
+    /// </summary>
+    private IEnumerator DelayAnimation(Animation animation, string nameFilter){
+        //Alternative WaitForSeconds
+        for(float timer = animation.delaySeconds; timer >= 0; timer -= Time.deltaTime){
+            //Skip Delay if !Activity
+            if(!_animationActivity[nameFilter])
+                yield break;
+                    
+            yield return null;
+        }
+    }
+
+    private AnimationsList GetAnimationListByName(string nameFilter){
+        return _listAnimations.First(x => x.name == nameFilter);
+    }
+
+    /// <summary>
+    /// Actives or Add a new Animation to de Dictonary
+    /// </summary>
+    /// <returns>Return false if is Already Active</returns>
+    private bool ActiveAnimation(string nameFilter){
+        if(_animationActivity.ContainsKey(nameFilter)){
+            if(!_animationActivity[nameFilter])
+                _animationActivity[nameFilter] = true;
+            else{
+                Debug.LogError("Animation is Already Active");
+                return false;
+            }
+        }
+        else
+            _animationActivity.Add(nameFilter, true);
+        return true;
+    }
+
+    /// <returns>Return true if Animation is Active</returns>
+    private bool CheckAnimationIsActive(string nameFilter){
+        //If is in the list
+        if(_animationActivity.ContainsKey(nameFilter)){
+            //If is Active
+            if(_animationActivity[nameFilter])
+                return true;
+            //If isn't
+            Debug.LogError($"AnimationName {nameFilter}, is Already Desactive");
+        }
+        //If isn't
+        else
+            Debug.LogError($"AnimationName {nameFilter} Doesn't Exist");
+
+         return false;
+    }
+
+    public void SkipAnimation(string nameFilter){
+        //Check if does not AnimationName exist
+        if(!CheckAnimationIsActive(nameFilter))
+            return;
+            
+        _animationActivity[nameFilter] = false;
+        AnimationsList animationsList = GetAnimationListByName(nameFilter);
+        foreach(Animation animation in animationsList.animations){
+            animation.target.CompleteAnimation();
+        }
     }
 }

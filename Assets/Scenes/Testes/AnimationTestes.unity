@@ -664,7 +664,7 @@ MonoBehaviour:
       SOAnimation: {fileID: 11400000, guid: ae72c43b6d72e4549a6850779feb1e17, type: 2}
     - name: EndLeft
       enableInteractable: 0
-      enableVisibility: 0
+      enableVisibility: 1
       waitAnimationEnd: 0
       hasDelay: 0
       delaySeconds: 0
