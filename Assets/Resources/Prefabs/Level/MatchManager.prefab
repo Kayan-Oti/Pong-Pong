@@ -49,3 +49,11 @@ MonoBehaviour:
   _cameraShake: {fileID: 0}
   _managerAnimation: {fileID: 0}
   _scoreToWin: 1
+  _sfxOnScorePlayer:
+    name: 
+    volume: 1
+    clip: {fileID: 8300000, guid: e7840a16d3d8fc74294ec70956f0e0de, type: 3}
+  _sfxOnScoreOther:
+    name: 
+    volume: 1
+    clip: {fileID: 8300000, guid: 07f91935beae8e640b7aac09441d40e6, type: 3}

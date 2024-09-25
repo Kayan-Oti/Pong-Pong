@@ -1,7 +1,7 @@
 using UnityEngine;
 
  [CreateAssetMenu(menuName = "DATA/SO Sounds", fileName = "SO Sounds")]
-public class SO_Sounds : ScriptableObject
+public class SO_SoundsUI : ScriptableObject
 {
-    public SoundList[] sounds;
+    public Sfx[] sounds;
 }

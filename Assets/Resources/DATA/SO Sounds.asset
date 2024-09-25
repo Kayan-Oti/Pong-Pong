@@ -15,11 +15,7 @@ MonoBehaviour:
   sounds:
   - name: UI_ButtonClick
     volume: 1
-    mixer: {fileID: 5556007512418712613, guid: fcf2e114afdcef34fb9e7c94de1eba0d, type: 2}
-    sounds:
-    - {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
-  - name: UI_MouseHover
-    volume: 0.2
-    mixer: {fileID: 5556007512418712613, guid: fcf2e114afdcef34fb9e7c94de1eba0d, type: 2}
-    sounds:
-    - {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+    clip: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  - name: UI_ButtonHover
+    volume: 0.35
+    clip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}

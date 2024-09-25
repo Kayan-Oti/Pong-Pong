@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    [HideInInspector] public static GameManager Instance;
     [SerializeField] private LoadingScreen _loadingScreen;
     private List<AsyncOperation> _scenesLoading = new List<AsyncOperation>();
     private int _currentSceneIndex;
@@ -16,18 +16,17 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
             Instance = this;
 
-        StartCoroutine(FistScene(SceneIndex.Menu));
+        StartCoroutine(FirstScene(SceneIndex.Menu));
     }
 
     //Method similar to LoadScene, but without animation
-    public IEnumerator FistScene(SceneIndex scene){
+    public IEnumerator FirstScene(SceneIndex scene){
         //Scene to load
-        AsyncOperation sceneLoading = SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Additive);
+        _scenesLoading.Add(SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Additive));
         _currentSceneIndex = (int)scene;
 
         //Wait loading
-        while(!sceneLoading.isDone)
-            yield return null;
+        yield return WaitLoading();
 
         //On Scene Loaded
         InvokeOnLoadedScene();
@@ -41,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GetSceneLoadProgress(SceneIndex scene){
         //Ativa a animação de Loading
-        Debug.Log("Espera Animação Carregar");
         yield return _loadingScreen.OnStartLoadScene();
 
         //Scene to load
@@ -53,24 +51,26 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(MIN_WAITSECONDS_LOADSCREEN);
 
         //Wait loading
-        for(int i = 0; i<_scenesLoading.Count; i++){
-            while(!_scenesLoading[i].isDone){
-                yield return null;
-            }
-        }
+        yield return WaitLoading();
 
         //On Scene Loaded
         OnSceneLoaded();
     }
 
+    private IEnumerator WaitLoading(){
+        for(int i = 0; i<_scenesLoading.Count; i++){
+            while(!_scenesLoading[i].isDone){
+                yield return null;
+            }
+        }
+    }
+
     private void OnSceneLoaded(){
         //Animação ao terminar de Carrega
-        Debug.Log("Animação terminar de Carregar");
         _loadingScreen.OnEndLoadScene(InvokeOnLoadedScene);
     }
 
     private void InvokeOnLoadedScene(){
-        Debug.Log("Invoke");
         Manager_Event.GameManager.OnLoadedScene.Get().Invoke();
     }
 }

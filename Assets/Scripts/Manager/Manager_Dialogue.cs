@@ -40,7 +40,7 @@ public class Manager_Dialogue : MonoBehaviour
         
         _button.SetActive(true);
         //Wait Animation End
-        yield return StartCoroutine(_animationManager.PlayAnimation("Start"));
+        yield return _animationManager.PlayAnimation("Start");
         _isDialogueActive = true;
 
         //Display name
@@ -57,6 +57,7 @@ public class Manager_Dialogue : MonoBehaviour
     private void EndDialogue(){
         _paragraphs.Clear();
         _button.SetActive(false);
+        _isDialogueActive = false;
 
         //Ao terminar a animação Invoke OnEndDialogue Event
         StartCoroutine(_animationManager.PlayAnimation("End",() => Manager_Event.DialogueManager.OnEndDialogue.Get().Invoke()));
@@ -65,6 +66,8 @@ public class Manager_Dialogue : MonoBehaviour
     public void Onclick(){
         if(_isDialogueActive){
             DisplayNextParagraph();
+        }else{
+            _animationManager.SkipAnimation("Start");
         }
     }
 

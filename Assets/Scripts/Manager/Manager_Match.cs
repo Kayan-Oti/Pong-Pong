@@ -15,6 +15,11 @@ public class Manager_Match : MonoBehaviour
     [Header("Values")]
     [SerializeField] private float _scoreToWin = 7;
 
+    [Header("Sfxs")]
+    [SerializeField] private Sfx _sfxOnScorePlayer;
+    [SerializeField] private Sfx _sfxOnScoreOther;
+
+
 
     private Dictionary<ArenaSide, int> _scoreSides = new Dictionary<ArenaSide, int>();
 
@@ -54,7 +59,7 @@ public class Manager_Match : MonoBehaviour
         Manager_Event.MatchManger.OnStartRound.Get().Invoke();
         
         yield return new WaitForSeconds(0.25f);
-        yield return StartCoroutine(_managerAnimation.PlayAnimation("CountDown"));
+        yield return _managerAnimation.PlayAnimation("CountDown");
 
         _ball.AddStartingForce();
     }
@@ -66,10 +71,14 @@ public class Manager_Match : MonoBehaviour
     }
 
     private IEnumerator EndRoundActions(ArenaSide side){
-        //Animations
-
+        //---Animations and Sounds
+        if(side == ArenaSide.Left)
+            Manager_Sound.Instance.PlaySound(_sfxOnScorePlayer);
+        else
+            Manager_Sound.Instance.PlaySound(_sfxOnScoreOther);
+        
         //CameraShake
-        yield return StartCoroutine(_cameraShake.StartShake());
+        yield return _cameraShake.StartShake();
         
         //Score Animation
         //TODO
@@ -99,12 +108,11 @@ public class Manager_Match : MonoBehaviour
 
     #endregion
 
-    public IEnumerator EnableGameOverUI(){
-        yield return StartCoroutine(_managerAnimation.PlayAnimation("GameOver_Start"));
+    public void EnableGameOverUI(){
+        StartCoroutine(_managerAnimation.PlayAnimation("GameOver_Start"));
     }
 
-    public IEnumerator DisableGameOverUI(Action DoLast){
-        yield return StartCoroutine(_managerAnimation.PlayAnimation("GameOver_End"));
-        DoLast();
+    public void DisableGameOverUI(Action DoLast){
+        StartCoroutine(_managerAnimation.PlayAnimation("GameOver_End", DoLast));
     }
 }

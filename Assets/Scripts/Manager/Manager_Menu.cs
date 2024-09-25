@@ -36,7 +36,7 @@ public class Manager_Menu : MonoBehaviour
 
     private IEnumerator StartAnimation(){
         yield return new WaitForSeconds(DELAY_TO_START);
-        StartCoroutine(_managerMainBox.PlayAnimation("Start"));
+        yield return _managerMainBox.PlayAnimation("Start");
     }
 
     #region Onclick

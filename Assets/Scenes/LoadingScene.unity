@@ -751,6 +751,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: {fileID: 1742736633}
+  _sfxStart:
+    name: 
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 51f702479d9476e45856099202505225, type: 3}
+  _sfxEnd:
+    name: 
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 8754d93bca0ea984e846587ff65209f5, type: 3}
 --- !u!114 &1742736633
 MonoBehaviour:
   m_ObjectHideFlags: 0
