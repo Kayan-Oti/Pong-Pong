@@ -30,6 +30,10 @@ public class Manager_Menu : MonoBehaviour
 
     private void OnLoadScene(){
         _levelSelector.EnableUnlockLevels();
+        SimpleAudioManager.Manager.instance.PlaySong(new SimpleAudioManager.Manager.PlaySongOptions(){
+            song = 0,
+            intensity = 1
+        });
 
         StartCoroutine(StartAnimation());
     }
@@ -61,24 +65,25 @@ public class Manager_Menu : MonoBehaviour
 
     #region LevelSelector
 
-    private void DisableAllButtons(){
+    private void LeavingMenu(){
+        SimpleAudioManager.Manager.instance.StopSong(0.5f);
         _levelSelector.DisableAllButtons();
     }
 
     public void EnterLevel1(){
-        DisableAllButtons();
+        LeavingMenu();
         GameManager.Instance.LoadScene(SceneIndex.Level1);
     }
     public void EnterLevel2(){
-        DisableAllButtons();
+        LeavingMenu();
         GameManager.Instance.LoadScene(SceneIndex.Level2);
     }
     public void EnterLevel3(){
-        DisableAllButtons();
+        LeavingMenu();
         GameManager.Instance.LoadScene(SceneIndex.Level3);
     }
     public void EnterLevel4(){
-        DisableAllButtons();
+        LeavingMenu();
         GameManager.Instance.LoadScene(SceneIndex.Level4);
     }
     

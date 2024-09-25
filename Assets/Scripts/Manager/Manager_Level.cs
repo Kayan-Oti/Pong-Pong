@@ -49,6 +49,7 @@ public class Manager_Level : MonoBehaviour
 
     #region Dialogue Events
     private void OnLoadedScene() {
+        SimpleAudioManager.Manager.instance.PlaySong((int)MusicIndex.Level);
         Invoke(nameof(StartDialogue), DELAY_TO_START);
     }
 
@@ -135,12 +136,18 @@ public class Manager_Level : MonoBehaviour
         _matchManager.DisableGameOverUI(() => StartMatch());
     }
 
-    public void BackToMenu(){
+    private void LeavingLevel(){
         DOTween.KillAll();
+        SimpleAudioManager.Manager.instance.StopSong(0.5f);
+    }
+
+    public void BackToMenu(){
+        LeavingLevel();
         GameManager.Instance.LoadScene(SceneIndex.Menu);
     }
 
     public void NextLevel(){
+        LeavingLevel();
         SceneIndex sceneIndex = Manager_DATA.DictionaryLevelsToSceneIndex[_nextLevelIndex];
         GameManager.Instance.LoadScene(sceneIndex);
     }
