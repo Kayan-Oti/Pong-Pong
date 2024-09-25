@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,16 +8,16 @@ public class UI_Button : MonoBehaviour
     protected virtual void Start()
     {
         _eventTrigger = gameObject.AddComponent<EventTrigger>();
-        _eventTrigger.AddEventListener(EventTriggerType.PointerClick, OnClickEvent);
-        _eventTrigger.AddEventListener(EventTriggerType.PointerEnter, OnEnterEvent);
+        _eventTrigger.AddTriggerListener(EventTriggerType.PointerClick, OnClickEvent);
+        _eventTrigger.AddTriggerListener(EventTriggerType.PointerEnter, OnEnterEvent);
 
     }
 
     protected virtual void OnClickEvent(PointerEventData eventData){
-        Manager_Sound.PlaySound(SoundType.UI_ButtonClick);
+        Manager_Sound.Instance.PlaySoundUI(SoundUIType.UI_ButtonClick);
     }
 
     protected virtual void OnEnterEvent(PointerEventData eventData){
-        Manager_Sound.PlaySound(SoundType.UI_ButtonHover);
+        Manager_Sound.Instance.PlaySoundUI(SoundUIType.UI_ButtonHover);
     }
 }

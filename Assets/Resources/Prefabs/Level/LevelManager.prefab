@@ -53,3 +53,11 @@ MonoBehaviour:
   _dialogueLose: {fileID: 11400000, guid: e6dd565dcd3bbb94cb29300fc7e7f105, type: 2}
   _isFinalLevel: 0
   _nextLevelIndex: 1
+  _sfxMatchWin:
+    name: 
+    volume: 0.5
+    clip: {fileID: 8300000, guid: fb5fb46511bbf884e8a41ea9bf194f56, type: 3}
+  _sfxMatchLose:
+    name: 
+    volume: 0.5
+    clip: {fileID: 8300000, guid: 232654e499f0d1f48a29de0f998f00d8, type: 3}

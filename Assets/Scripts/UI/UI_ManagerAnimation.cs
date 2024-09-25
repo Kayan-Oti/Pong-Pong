@@ -39,6 +39,12 @@ public class UI_ManagerAnimation : MonoBehaviour
         public List<Animation> animations;
     }
 
+    enum AnimationState{
+        notExist = 0,
+        isActive,
+        isDesactive
+    }
+
     [SerializeField] private List<AnimationsList> _listAnimations = new List<AnimationsList>();
     /// <summary>
     /// Dictionay of Currents Animation
@@ -51,13 +57,13 @@ public class UI_ManagerAnimation : MonoBehaviour
     /// </summary>
     private IEnumerator CountCoroutine(IEnumerator animation){
         _countCoroutines++;
-        yield return StartCoroutine(animation);
+        yield return animation;
         _countCoroutines--;
     }
 
     public IEnumerator PlayAnimation(string nameFilter, Action DoLast = null)
     {
-        //Creates or Check is animation can be Active
+        //Creates or Active animation
         if(!ActiveAnimation(nameFilter))
             yield break;
 
@@ -80,10 +86,8 @@ public class UI_ManagerAnimation : MonoBehaviour
                  StartCoroutine(CountCoroutine(animation.target.StartAnimation(animation.SOAnimation, animation.enableInteractable, animation.enableVisibility)));
             
             //Delay before next
-            //Check if is Active, because it can be skipped while is WaitingEnd Animation
-            if(animation.hasDelay){
+            if(animation.hasDelay)
                 yield return DelayAnimation(animation, nameFilter);
-            }
         }
         
         //Wait all animations to End
@@ -118,41 +122,47 @@ public class UI_ManagerAnimation : MonoBehaviour
     /// </summary>
     /// <returns>Return false if is Already Active</returns>
     private bool ActiveAnimation(string nameFilter){
-        if(_animationActivity.ContainsKey(nameFilter)){
-            if(!_animationActivity[nameFilter])
+        bool works;
+        switch(CheckAnimationState(nameFilter)){
+            case AnimationState.notExist:
+                _animationActivity.Add(nameFilter, true);
+                works = true;
+                break;
+            case AnimationState.isActive:
+                Debug.LogError($"Animation {nameFilter} is already Active");
+                works = false;
+                break;
+            case AnimationState.isDesactive:
                 _animationActivity[nameFilter] = true;
-            else{
-                Debug.LogError("Animation is Already Active");
-                return false;
-            }
+                works = true;
+                break;
+            default:
+                Debug.LogError("Unexpected AnimationState");
+                works = false;
+                break;
         }
-        else
-            _animationActivity.Add(nameFilter, true);
-        return true;
+        return works;
     }
 
-    /// <returns>Return true if Animation is Active</returns>
-    private bool CheckAnimationIsActive(string nameFilter){
-        //If is in the list
-        if(_animationActivity.ContainsKey(nameFilter)){
-            //If is Active
-            if(_animationActivity[nameFilter])
-                return true;
-            //If isn't
-            Debug.LogError($"AnimationName {nameFilter}, is Already Desactive");
-        }
-        //If isn't
-        else
-            Debug.LogError($"AnimationName {nameFilter} Doesn't Exist");
-
-         return false;
+    /// <summary>
+    /// Checks if Animation does not Exist, is Active or Desactive
+    /// </summary>
+    private AnimationState CheckAnimationState(string nameFilter){
+        //If Doesn't Exist
+        if(!_animationActivity.ContainsKey(nameFilter))
+            return AnimationState.notExist;
+        //If is Active
+        if(_animationActivity[nameFilter])
+            return AnimationState.isActive;
+        //If is Desactive
+        return AnimationState.isDesactive;
     }
 
     public void SkipAnimation(string nameFilter){
-        //Check if does not AnimationName exist
-        if(!CheckAnimationIsActive(nameFilter))
+        //Check if Animation is Active
+        if(CheckAnimationState(nameFilter) != AnimationState.isActive)
             return;
-            
+        
         _animationActivity[nameFilter] = false;
         AnimationsList animationsList = GetAnimationListByName(nameFilter);
         foreach(Animation animation in animationsList.animations){

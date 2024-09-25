@@ -1,48 +1,56 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+
+[System.Serializable]
+public class Sfx
+{
+    [HideInInspector] public string name;
+    [Range(0, 1)] public float volume = 1f;
+    public AudioClip clip;
+}
 
 [RequireComponent(typeof(AudioSource))]
 public class Manager_Sound : MonoBehaviour
 {
-    [SerializeField] private SO_Sounds SO;
-    private static Manager_Sound instance = null;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource _audioSourcePrefab;
+    [SerializeField] private SO_SoundsUI _soundsUI;
+    public static Manager_Sound Instance;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
-        if(!instance)
+        if(Instance == null)
         {
-            instance = this;
-            audioSource = GetComponent<AudioSource>();
+            Instance = this;
+            _audioSource = GetComponent<AudioSource>();
         }
    }
 
-    public static void PlaySound(SoundType sound, AudioSource source = null, float volume = 1)
-    {
-        SoundList soundList = instance.SO.sounds[(int)sound];
-        AudioClip[] clips = soundList.sounds;
-        AudioClip randomClip = clips[Random.Range(0, clips.Length)];
+   public void PlaySound(Sfx sfx, Transform spawnTransform = null){
+        //Default Transform
+        if(spawnTransform == null)
+            spawnTransform = transform;
 
-        if(source)
-        {
-            source.outputAudioMixerGroup = soundList.mixer;
-            source.clip = randomClip;
-            source.volume = volume * soundList.volume;
-            source.Play();
-        }
-        else
-        {
-            instance.audioSource.outputAudioMixerGroup = soundList.mixer;
-            instance.audioSource.PlayOneShot(randomClip, volume * soundList.volume);
-        }
+        //Spawn AudioSource
+        AudioSource audioSource = Instantiate(_audioSourcePrefab, spawnTransform.position, Quaternion.identity);
+
+        audioSource.clip = sfx.clip;
+        audioSource.volume = sfx.volume;
+        audioSource.Play();
+
+        float cliplength = sfx.clip.length;
+
+        Destroy(audioSource.gameObject, cliplength);
     }
-}
 
-[System.Serializable]
-public struct SoundList
-{
-    [HideInInspector] public string name;
-    [Range(0, 1)] public float volume;
-    public AudioMixerGroup mixer;
-    public AudioClip[] sounds;
+    public void PlaySoundRandom(Sfx[] sfx, Transform spawnTransform){
+        int rand = Random.Range(0, sfx.Length);
+        PlaySound(sfx[rand], spawnTransform);
+    }
+
+    public void PlaySoundUI(SoundUIType sound){
+        Sfx soundList = _soundsUI.sounds[(int)sound];
+        _audioSource.PlayOneShot(soundList.clip, soundList.volume);
+    }
 }

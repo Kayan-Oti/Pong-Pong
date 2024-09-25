@@ -22,6 +22,12 @@ public class Manager_Level : MonoBehaviour
     [Header("Values")]
     [SerializeField] private bool _isFinalLevel = false;
     [ConditionalField(nameof(_isFinalLevel), true)][SerializeField] private Levels _nextLevelIndex;
+
+    [Header("Sfxs")]
+    [SerializeField] private Sfx _sfxMatchWin;
+    [SerializeField] private Sfx _sfxMatchLose;
+
+
     private ArenaSide _sideWinner;
     private bool _startDialogueDone;
     private const float DELAY_TO_START = 0.5f;
@@ -81,9 +87,15 @@ public class Manager_Level : MonoBehaviour
     private void OnEndMatch(ArenaSide side){
         _sideWinner = side;
 
-        //If Player Win and have another Level
-        if(HasPlayerWin() && !_isFinalLevel)
-            UnlockNextLevel();
+        //If Player Win
+        if(HasPlayerWin()){
+            //If Has another level
+            if(!_isFinalLevel)
+                UnlockNextLevel();
+            Manager_Sound.Instance.PlaySound(_sfxMatchWin);
+        }else{
+            Manager_Sound.Instance.PlaySound(_sfxMatchLose);
+        }
 
         EndMatchDialogue();
     }
@@ -106,7 +118,7 @@ public class Manager_Level : MonoBehaviour
 
     private void EnableGameOverUI(){
         SetStateGameOverButtons();
-        StartCoroutine(_matchManager.EnableGameOverUI());
+        _matchManager.EnableGameOverUI();
     }
 
     private void SetStateGameOverButtons(){
@@ -120,7 +132,7 @@ public class Manager_Level : MonoBehaviour
     }
 
     public void Rematch(){
-        StartCoroutine(_matchManager.DisableGameOverUI(() => StartMatch()));
+        _matchManager.DisableGameOverUI(() => StartMatch());
     }
 
     public void BackToMenu(){

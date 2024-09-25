@@ -164,6 +164,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _accelerationStart: 200
   _accelerationScale: 8
+  _sfxBounce:
+    name: 
+    volume: 1
+    clip: {fileID: 8300000, guid: 6414552336598f54aa9695794100283c, type: 3}
 --- !u!95 &405855134390949972
 Animator:
   serializedVersion: 5

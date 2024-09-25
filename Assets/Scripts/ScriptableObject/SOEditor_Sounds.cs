@@ -6,20 +6,20 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 
-[CustomEditor(typeof(SO_Sounds))]
-public class SOEditor_Sounds : Editor
+[CustomEditor(typeof(SO_SoundsUI))]
+public class SOEditor_SoundsUI : Editor
 {
     private void OnEnable()
     {
-        ref SoundList[] soundList = ref ((SO_Sounds)target).sounds;
+        ref Sfx[] soundList = ref ((SO_SoundsUI)target).sounds;
 
         if (soundList == null)
             return;
 
-        string[] names = Enum.GetNames(typeof(SoundType));
+        string[] names = Enum.GetNames(typeof(SoundUIType));
         bool differentSize = names.Length != soundList.Length;
 
-        Dictionary<string, SoundList> sounds = new();
+        Dictionary<string, Sfx> sounds = new();
 
         if (differentSize)
         {
@@ -40,17 +40,16 @@ public class SOEditor_Sounds : Editor
             {
                 if (sounds.ContainsKey(currentName))
                 {
-                    SoundList current = sounds[currentName];
-                    UpdateElement(ref soundList[i], current.volume, current.sounds, current.mixer);
+                    Sfx current = sounds[currentName];
+                    UpdateElement(ref soundList[i], current.volume, current.clip);
                 }
                 else
-                    UpdateElement(ref soundList[i], 1, new AudioClip[0], null);
+                    UpdateElement(ref soundList[i], 1);
 
-                static void UpdateElement(ref SoundList element, float volume, AudioClip[] sounds, AudioMixerGroup mixer)
+                static void UpdateElement(ref Sfx element, float volume, AudioClip sound = null)
                 {
                     element.volume = volume;
-                    element.sounds = sounds;
-                    element.mixer = mixer;
+                    element.clip = sound;
                 }
             }
         }

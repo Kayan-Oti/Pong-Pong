@@ -22,13 +22,13 @@ public class UI_Button_LevelSelection : UI_Button
 
     protected override void OnClickEvent(PointerEventData eventData){
         if(_isEnable){
-            Manager_Sound.PlaySound(SoundType.UI_ButtonClick);
+            base.OnClickEvent(eventData);
         }
     }
 
     protected override void OnEnterEvent(PointerEventData eventData){
         if(_isEnable){
-            Manager_Sound.PlaySound(SoundType.UI_ButtonHover);
+            base.OnEnterEvent(eventData);
         }
     }
 }
