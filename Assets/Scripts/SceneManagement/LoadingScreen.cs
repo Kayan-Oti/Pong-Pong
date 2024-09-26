@@ -6,17 +6,15 @@ using UnityEngine;
 public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private UI_ManagerAnimation _animation;
-    [SerializeField] private Sfx _sfxStart;
-    [SerializeField] private Sfx _sfxEnd;
 
 
     public IEnumerator OnStartLoadScene(){
-        Manager_Sound.Instance.PlaySound(_sfxStart);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.LoadingScreenStart);
         yield return StartCoroutine(_animation.PlayAnimation("Start"));
     }
 
     public void OnEndLoadScene(Action DoLast){
-        Manager_Sound.Instance.PlaySound(_sfxEnd);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.LoadingScreenEnd);
         StartCoroutine(_animation.PlayAnimation("End", DoLast));
     }
 }

@@ -8,6 +8,7 @@ public class Manager_Menu : MonoBehaviour
     [SerializeField] private LevelSelector _levelSelector;
 
     [SerializeField] private GameObject _backButton;
+    [SerializeField] private GameObject _settings;
 
     [Header("Values")]
     [SerializeField] private const float DELAY_TO_START = 1.0f;
@@ -30,11 +31,8 @@ public class Manager_Menu : MonoBehaviour
 
     private void OnLoadScene(){
         _levelSelector.EnableUnlockLevels();
-        SimpleAudioManager.Manager.instance.PlaySong(new SimpleAudioManager.Manager.PlaySongOptions(){
-            song = 0,
-            intensity = 1
-        });
-
+        //Play Song Menu
+        AudioManager.Instance.InitializeMusic(FMODEvents.Instance.MenuMusic, MusicIntensity.Intensity3);
         StartCoroutine(StartAnimation());
     }
 
@@ -49,12 +47,21 @@ public class Manager_Menu : MonoBehaviour
     public void OnClick_Play(){
         StartCoroutine(_managerMainBox.PlayAnimation("End", () => SetBackButtonActive(true)));
     }
-
-    //--Menu Back
+    //-Back
     public void OnClick_Back(){
         SetBackButtonActive(false);
         StartCoroutine(_managerMainBox.PlayAnimation("Back"));
     }
+
+    //--Menu Settings
+    public void OnClick_Settings(){
+        _settings.SetActive(true);
+    }
+
+    public void OnClick_SettingsClose(){
+        _settings.SetActive(false);
+    }
+
 
     //--Menu Exit
     public void OnClick_Exit(){
@@ -66,7 +73,8 @@ public class Manager_Menu : MonoBehaviour
     #region LevelSelector
 
     private void LeavingMenu(){
-        SimpleAudioManager.Manager.instance.StopSong(0.5f);
+        //Stop Song
+        AudioManager.Instance.StopMusic();
         _levelSelector.DisableAllButtons();
     }
 

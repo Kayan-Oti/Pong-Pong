@@ -5,7 +5,6 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _accelerationStart = 200.0f;
     [Tooltip("Acceleration add every time the ball bouncy in the paddle")]
     [SerializeField] private float _accelerationScale = 8.0f;
-    [SerializeField] private Sfx _sfxBounce;
     private float _accelerationCurrent = 0.0f;
 
     //Components
@@ -51,7 +50,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         ChangeFacingDirection(_rigidbody.velocity);
-        Manager_Sound.Instance.PlaySound(_sfxBounce, transform);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.BallImpact, transform.position);
     }
 
     private void ChangeFacingDirection(Vector2 direction){

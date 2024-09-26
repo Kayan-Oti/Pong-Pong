@@ -24,8 +24,6 @@ public class Manager_Level : MonoBehaviour
     [ConditionalField(nameof(_isFinalLevel), true)][SerializeField] private Levels _nextLevelIndex;
 
     [Header("Sfxs")]
-    [SerializeField] private Sfx _sfxMatchWin;
-    [SerializeField] private Sfx _sfxMatchLose;
 
 
     private ArenaSide _sideWinner;
@@ -49,7 +47,8 @@ public class Manager_Level : MonoBehaviour
 
     #region Dialogue Events
     private void OnLoadedScene() {
-        SimpleAudioManager.Manager.instance.PlaySong((int)MusicIndex.Level);
+        //Play Song
+        AudioManager.Instance.InitializeMusic(FMODEvents.Instance.LevelMusic, MusicIntensity.Intensity2);
         Invoke(nameof(StartDialogue), DELAY_TO_START);
     }
 
@@ -93,9 +92,9 @@ public class Manager_Level : MonoBehaviour
             //If Has another level
             if(!_isFinalLevel)
                 UnlockNextLevel();
-            Manager_Sound.Instance.PlaySound(_sfxMatchWin);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.OnMatchWin);
         }else{
-            Manager_Sound.Instance.PlaySound(_sfxMatchLose);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.OnMatchLose);
         }
 
         EndMatchDialogue();
@@ -138,7 +137,7 @@ public class Manager_Level : MonoBehaviour
 
     private void LeavingLevel(){
         DOTween.KillAll();
-        SimpleAudioManager.Manager.instance.StopSong(0.5f);
+        AudioManager.Instance.StopMusic();
     }
 
     public void BackToMenu(){
