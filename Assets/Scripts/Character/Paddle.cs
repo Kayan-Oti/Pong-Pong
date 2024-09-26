@@ -66,6 +66,8 @@ public class Paddle : MonoBehaviour
             _xForceMultiply = _minForce + ((1 - precisionPercent) * (_maxForce-_minForce));
             Debug.Log("perCent: "+(1 - precisionPercent));
             ball.AddForce(new Vector2(_xForceMultiply, _yForceAngle));
+
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.CharacterHitBall);
         }
     }
 }

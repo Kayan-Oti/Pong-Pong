@@ -14,10 +14,10 @@ public class UI_Button : MonoBehaviour
     }
 
     protected virtual void OnClickEvent(PointerEventData eventData){
-        Manager_Sound.Instance.PlaySoundUI(SoundUIType.UI_ButtonClick);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonClick, transform.position);
     }
 
     protected virtual void OnEnterEvent(PointerEventData eventData){
-        Manager_Sound.Instance.PlaySoundUI(SoundUIType.UI_ButtonHover);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ButtonHover, transform.position);
     }
 }

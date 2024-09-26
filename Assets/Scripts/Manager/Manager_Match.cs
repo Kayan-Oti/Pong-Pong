@@ -16,8 +16,6 @@ public class Manager_Match : MonoBehaviour
     [SerializeField] private float _scoreToWin = 7;
 
     [Header("Sfxs")]
-    [SerializeField] private Sfx _sfxOnScorePlayer;
-    [SerializeField] private Sfx _sfxOnScoreOther;
 
 
 
@@ -73,9 +71,9 @@ public class Manager_Match : MonoBehaviour
     private IEnumerator EndRoundActions(ArenaSide side){
         //---Animations and Sounds
         if(side == ArenaSide.Left)
-            Manager_Sound.Instance.PlaySound(_sfxOnScorePlayer);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.OnRoundWin);
         else
-            Manager_Sound.Instance.PlaySound(_sfxOnScoreOther);
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.OnRoundLose);
         
         //CameraShake
         yield return _cameraShake.StartShake();
